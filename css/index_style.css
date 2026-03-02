@@ -55,30 +55,28 @@ body {
     top: 0;
     z-index: 1000;
 
-    background-color: hsl(var(--bg-light) / 0.35);
-    backdrop-filter: blur(12px);
-    
+    background-color: var(--bg-dark); 
     transition: box-shadow 0.5s ease;
+    transition: background-color 0.3s ease;
 }
 #landing nav.scrolled {
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 4px 8px rgba(40, 40, 40, 0.2);
 }
-#landing nav a {
-    text-decoration: none;
-    color: var(--text-light);
-    padding: 0px 12px;
-    font-size: 16px;
-    cursor: pointer;
+#landing nav.active {
+    background-color: rgb(40, 40, 40);
 }
-#landing nav a:hover {
-    text-decoration: underline;
-    color: var(--primary);
+nav h3 {
+    margin-right: auto;
+    font-weight: normal;
+}
+#landing nav.active h3 {
+    color: white;
 }
 #rubik {
     width: 44px;
-    margin-right: auto;
+    margin: 0 4px 0px 12px;
     cursor: pointer;
-    transition: transform 0.2s ease;
+    transition: transform 0.3s ease;
 }
 #rubik img {
     width: 44px;
@@ -86,6 +84,55 @@ body {
 }
 #rubik:hover { transform: scale(1.10); }
 #rubik:active { transform: scale(.90); }
+#landing nav a:not(:first-child) { display: none; }
+#landing nav #menu-icon {
+    display: block;
+    margin: 0 20px;
+    cursor: pointer;
+}
+#landing nav #menu-icon #bar1, 
+#landing nav #menu-icon #bar2, 
+#landing nav #menu-icon #bar3 {
+    width: 24px;
+    height: 2px;
+    background-color: black;
+    margin: 4px 0px;
+    transition: all 0.4s ease;
+}
+#landing nav #menu-icon.change #bar1 { 
+    transform: translate(0, 6px) rotate(-45deg); 
+    background-color: white;
+}
+#landing nav #menu-icon.change #bar2 { opacity: 0; }
+#landing nav #menu-icon.change #bar3 { 
+    transform: translate(0, -6px) rotate(45deg); 
+    background-color: white;
+}
+.menu-overlay {
+    z-index: 999;
+    position: fixed;
+    inset: 0;
+    background-color: rgb(40, 40, 40);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    visibility: hidden;
+    opacity: 0;
+
+    transition-duration: 0.2s;
+}
+.menu-overlay a {
+    text-decoration: none;
+    color: white;
+    font-size: 28px;
+    margin: 16px 0px;
+}
+.menu-overlay.active {
+    visibility: visible;
+    opacity: 1;
+}
 
 #headshot-container {
     display: flex;
@@ -94,6 +141,14 @@ body {
     justify-content: center;
     width: fit-content;
     margin: 76px 30px 12px 30px;
+
+    animation-name: spin;
+    animation-duration: 1s;
+    animation-timing-function: cubic-bezier(0,0,0,1.2);
+}
+@keyframes spin {
+    from { transform: scale(0) rotate(0deg); }
+    to { transform: scale(1) rotate(360deg); }
 }
 #headshot{
     width: min(64%, 260px, 30vh);
@@ -172,15 +227,31 @@ body {
     height: 20px;
     animation: bounce 1.5s infinite;
 }
-#arrow-container:hover {
-    opacity: 80%;
-}
 @keyframes bounce {
     0%, 100% { transform: translateY(0); }
     50% { transform: translateY(2px); }
 }
+#arrow-container:hover {
+    opacity: 80%;
+}
 
-@media (min-width: 800px) {
+@media (min-width: 850px) {
+    #landing nav #menu-icon {
+        display: none;
+    }
+    #landing nav a:not(:first-child) {
+        display: block;
+        text-decoration: none;
+        color: var(--text-light);
+        padding: 0px 12px;
+        font-size: 16px;
+        cursor: pointer;
+    }
+    #landing nav a:hover {
+        text-decoration: underline;
+        color: var(--primary);
+    }
+
     #landing {
         flex-direction: row;
     }
