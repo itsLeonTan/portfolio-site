@@ -1,0 +1,136 @@
+ 
+.investmentproduct-section{
+    border-top: 1px solid black;
+    border-bottom: 2px solid black;
+    padding-bottom: 40px;
+    background-color: rgba(255, 255, 255, 0.5);
+}
+#investmentproduct-title > h1 {
+    font-family: "Montserrat", sans-serif;
+    text-align:center;
+    font-size: 50px;
+    font-weight: bold;
+    margin: 75px 0 20px 0;
+}
+#investmentproduct-title > p {
+    font-family: "Montserrat", sans-serif;
+    text-align:center;
+    font-size: 18px;
+    margin: 0 0 75px 0;
+    opacity: 60%;
+    letter-spacing: 0.5px;
+    line-height: 2;
+}
+
+#portfolio-title > h1 {
+    font-family: "Montserrat", sans-serif;
+    text-align:center;
+    font-size: 40px;
+    font-weight: bold;
+    margin: 75px 0 20px 0;
+}
+#portfolio-title > p {
+    font-family: "Montserrat", sans-serif;
+    text-align:center;
+    font-size: 15px;
+    margin: 0 0 75px 0;
+    opacity: 60%;
+    letter-spacing: 0.5px;
+}
+#portfolio-choices {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    padding: 40px;
+}
+#portfolio-box {
+    border: 2px solid black;
+    padding: 30px;
+    text-align:left;
+    font-family: "Montserrat", sans-serif;
+    min-height: 500px;
+    background-color:white;
+}
+.portfolio-section {
+    padding-top: 40px;
+    border-top: 1px solid black;
+    border-bottom: 2px solid black;
+    background-color: rgba(250, 250, 250, 0.3);
+}
+
+#custom-title > h1 {
+    text-align:center;
+    font-family: "Montserrat", sans-serif;
+}
+
+#custom-title > p {
+    text-align:center;
+    font-family: "Montserrat", sans-serif;
+    opacity:60%;
+}
+#custom-builder {
+    display:grid;
+    width:1000px;
+    height:150px;
+    border: 2px solid black;
+    align-items: center;
+    margin :50px auto;
+}
+#custom-builderbox { 
+border: 2px solid black;
+margin: 50px auto; 
+align-items: center; 
+}
+#custom-builderbox a {
+    text-decoration: none;
+    display:inline-block;
+    width:800px;
+    height:50px;
+    font-family: "Montserrat", sans-serif;
+    font-size: 20px;
+    opacity:85%;
+    font-weight: normal;
+    text-align:center;      
+    line-height:50px;
+    background-color:white;
+}
+#custom-builderbox:hover > a {
+    background-color:rgba(235, 235, 235, 0.1);
+}
+.start-section{
+    text-align:center;
+    color:white;
+    padding-top: 40px;
+    border-top: 2px solid black;
+    border-bottom: 2px solid black;
+    background-color: rgb(4, 25, 60);
+}
+#start-box {
+    display:inline-block;
+    width:250px;
+    height:50px;
+    border:2px solid black;
+    margin-top: 30px;
+    margin-bottom: 90px;
+    text-decoration: none;
+    background-color:white;
+
+    font-family: "Montserrat", sans-serif;
+    font-size: 15px;
+    font-weight: bold;
+    text-align:center;      
+    line-height:50px;
+}
+
+.start-section p {
+    opacity:70%;
+}
+
+#start-box:hover {
+    background-color:rgba(235, 235, 235, 0.1);
+}
+
+
+
+  
+
