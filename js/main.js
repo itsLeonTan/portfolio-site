@@ -2,10 +2,6 @@
 
 const nav = document.querySelector('nav');
 
-window.addEventListener('scroll', () => {
-    nav.classList.toggle('scrolled', window.scrollY > 0);
-});
-
 function menuFunction(x) {
     x.classList.toggle("change");
     document.querySelector(".menu-overlay").classList.toggle("active");
