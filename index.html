@@ -7,133 +7,142 @@
     <link rel="icon" type="image/x-icon" href="src/rubik.png">
     <link rel="stylesheet" href="css/index_style.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com">
+    <script src="js/main.js" defer></script>
 </head>
 
 <body>
-    <nav>
-        <a id="rubik" href="index.html">
-            <img src="src/rubik.png" alt="Rubik's Cube">
-        </a>
-        <h3>Leon Tan</h3>
-
-        <div id="menu-icon" onclick="menuFunction(this)">
-            <div id="bar1"></div>
-            <div id="bar2"></div>
-            <div id="bar3"></div>
-        </div>
-
-        <a href="#landing">Home</a>
-        <a href="about.html">About</a>
-        <a href="projects.html">Projects</a>
-        <a href="contact.html">Contact</a>    
-    </nav> 
-
-    <section id="landing">
-
-        <div id="headshot-container">
-            <img id="headshot" src="src/headshot.jpg" alt="Leon Tan">
-        </div> 
-
-        <div id="intro">
-            <div>
-                <h2 class="typewrite" 
-                data-type='["Hi, I&apos;m Leon.", "Glad you&apos;re here!", "Let&apos;s work together!", "Stay curious!", "Never stop learning!"]' data-period="2000"><span class="wrap"></span></h2>
+    <header>
+        <nav>
+            <a id="rubik" href="index.html">
+                <img src="src/rubik.png" alt="Rubik's Cube">
+            </a>
+            <h3>Leon Tan</h3>
+    
+            <div id="menu-icon" onclick="menuFunction(this)">
+                <div id="bar1"></div>
+                <div id="bar2"></div>
+                <div id="bar3"></div>
             </div>
-            <h4>PROFILE</h4>
-            <p>
-                I am a computer science student at Thompson River University who enjoys solving 
-                problems with code and developing reliable solutions. With IT training and over three years of work 
-                experience in customer service and team management, I bring adaptability, strong communication skills, 
-                and a practical mindset to every project.
-            </p>
-            <a href="src/Resume, Leon Tan.pdf" target="_blank">VIEW MY RESUME</a>
-        </div>
+    
+            <a href="#landing">Home</a>
+            <a href="about.html">About</a>
+            <a href="projects.html">Projects</a>
+            <a href="contact.html">Contact</a>    
+        </nav> 
+    </header>
 
-        <div id="arrow-container">
-            <p>See More</p>
-            <a id="arrow-link" href="#arrow-link"><img src="src/down.png" alt="Down Arrow" id="arrow"></a>
-        </div>
-    </section>
-
-    <!-- ========== EXPERIENCE SECTION ========== -->
-    <h1 style="margin: 68px 0px 0px 0px;">Experience</h1>
-    <section id="timeline">
-        <div class="timeline-item">
-            <div class="timeline-dot"></div>
-            <div class="timeline-content">
-                <h3>GeoPacific Consultants | Vancouver, BC</h3>
-                <span class="date">August 2024 - August 2025</span>
-                <p>Laboratory Administrator</p>
+    <main>
+        <section id="landing">
+            <div id="headshot-container">
+                <img id="headshot" src="src/headshot.jpg" alt="Leon Tan">
+            </div> 
+    
+            <div id="intro">
+                <div>
+                    <h2 class="typewrite" data-type='["Hi, I&apos;m Leon.", "Glad you&apos;re here!", "Let&apos;s work together!", "Stay curious!", "Never stop learning!"]' data-period="2000"><span class="wrap"></span></h2>
+                </div>
+                <h4>PROFILE</h4>
+                <p>
+                    I am a computer science student at Thompson River University who enjoys solving 
+                    problems with code and developing reliable solutions. With IT training and over three years of work 
+                    experience in customer service and team management, I bring adaptability, strong communication skills, 
+                    and a practical mindset to every project.
+                </p>
+                <a href="src/Resume, Leon Tan.pdf" target="_blank">VIEW MY RESUME</a>
             </div>
-        </div>
-
-        <div class="timeline-item">
-            <div class="timeline-dot"></div>
-            <div class="timeline-content">
-                <h3>Matchstick Chinatown & Yaletown | Vancouver, BC</h3>
-                <span class="date">May 2022 - September 2024</span>
-                <p>Supervisor, Barista, and Baker</p>
+    
+            <div id="arrow-container">
+                <a id="arrow-link" href="#timeline">
+                    <p>See More</p>
+                    <img src="src/down.png" alt="Down Arrow" id="arrow">
+                </a>
             </div>
-        </div>
-
-        <div class="timeline-item">
-            <div class="timeline-dot"></div>
-            <div class="timeline-content">
-                <h3>Ammolite & Jade | Richmond, BC & Ammolite Museum | Vancouver, BC</h3>
-                <span class="date">May 2021 - August 2022</span>
-                <p>Key Holder</p>
-                <ul>
-                    <li>Enhanced sales and revenue through self-taught jewelry crafting skills.</li>
-                </ul>
+        </section>
+    
+        <!-- ========== EXPERIENCE SECTION ========== -->
+        <section class="timeline" id="timeline">
+            <h1>Experience</h1>
+            <div id="experience-container">
+                <div class="timeline-item">
+                    <div class="experience-dot"></div>
+                    <div class="timeline-content">
+                        <h3>GeoPacific Consultants | Vancouver, BC</h3>
+                        <span class="date">August 2024 - August 2025</span>
+                        <p>Laboratory Administrator</p>
+                    </div>
+                </div>
+        
+                <div class="timeline-item">
+                    <div class="experience-dot"></div>
+                    <div class="timeline-content">
+                        <h3>Matchstick Chinatown & Yaletown | Vancouver, BC</h3>
+                        <span class="date">May 2022 - September 2024</span>
+                        <p>Supervisor, Barista, and Baker</p>
+                    </div>
+                </div>
+        
+                <div class="timeline-item">
+                    <div class="experience-dot"></div>
+                    <div class="timeline-content">
+                        <h3>Ammolite & Jade | Richmond, BC & Ammolite Museum | Vancouver, BC</h3>
+                        <span class="date">May 2021 - August 2022</span>
+                        <p>Key Holder</p>
+                        <ul>
+                            <li>Enhanced sales and revenue through self-taught jewelry crafting skills.</li>
+                        </ul>
+                    </div>
+                </div>
+        
+                <div class="timeline-item">
+                    <div class="experience-dot"></div>
+                    <div class="timeline-content">
+                        <h3>Tube Home Furniture | Malaysia</h3>
+                        <span class="date">April - November 2018</span>
+                        <p>Exhibitor, Promoter, Machine Operator, Factory and Warehouse Worker</p>
+                        <ul>
+                            <li>Represented TubeHome in two different exhibition.</li>
+                        </ul>
+                    </div>
+                </div>
             </div>
-        </div>
-
-        <div class="timeline-item">
-            <div class="timeline-dot"></div>
-            <div class="timeline-content">
-                <h3>Tube Home Furniture | Malaysia</h3>
-                <span class="date">April - November 2018</span>
-                <p>Exhibitor, Promoter, Machine Operator, Factory and Warehouse Worker</p>
-                <ul>
-                    <li>Represented TubeHome in two different exhibition.</li>
-                </ul>
+        </section>
+    
+        <!-- ========== EDUCATION SECTION ========== -->
+        <section class="timeline">
+            <h1>Education</h1>
+            <div id="edu-container">
+                <div class="timeline-item">
+                    <div class="edu-dot"></div>
+                    <div class="timeline-content">
+                        <h3>Thompson River University | Kamloops, BC</h3>
+                        <span class="date">Current</span>
+                        <p>Bachelor Degree of Computer Science</p>
+                    </div>
+                </div>
+        
+                <div class="timeline-item">
+                    <div class="edu-dot"></div>
+                    <div class="timeline-content">
+                        <h3>Columbia College | Vancouver, BC</h3>
+                        <span class="date">Graduated 2022</span>
+                        <p>Associate Degree of Computer Science</p>
+                    </div>
+                </div>
+        
+                <div class="timeline-item">
+                    <div class="edu-dot"></div>
+                    <div class="timeline-content">
+                        <h3>Kolej Tuanku Ja'afar | Malaysia</h3>
+                        <span class="date">Graduated 2018</span>
+                        <p>IGCSE O-Levels</p>
+                    </div>
+                </div>
             </div>
-        </div>
-    </section>
-
-    <!-- ========== EDUCATION SECTION ========== -->
-    <h1 style="margin-bottom: 0px;">Education</h1>
-    <section id="edu-container">
-        <div class="edu-item">
-            <div class="edu-dot"></div>
-            <div class="edu-content">
-                <h3>Thompson River University | Kamloops, BC</h3>
-                <span class="date">Current</span>
-                <p>Bachelor Degree of Computer Science</p>
-            </div>
-        </div>
-
-        <div class="edu-item">
-            <div class="edu-dot"></div>
-            <div class="edu-content">
-                <h3>Columbia College | Vancouver, BC</h3>
-                <span class="date">Graduated 2022</span>
-                <p>Associate Degree of Computer Science</p>
-            </div>
-        </div>
-
-        <div class="edu-item">
-            <div class="edu-dot"></div>
-            <div class="edu-content">
-                <h3>Kolej Tuanku Ja'afar | Malaysia</h3>
-                <span class="date">Graduated 2018</span>
-                <p>IGCSE O-Levels</p>
-            </div>
-        </div>
-    </section>
+        </section>
+    </main>
 
     <!-- ========== CONTACT ME ========== -->
-    <section id="contact-container">
+    <footer id="contact-container">
         <div>
             <h2>Contact Me</h2>
             <p>&#8611; <a href="mailto:itsleontan@gmail.com">itsleontan@gmail.com</a></p>
@@ -142,10 +151,7 @@
             <p>&#8611; <a href="src/Resume, Leon Tan.pdf">Resume</a></p>
         </div>
         <p style="font-size: 12px; margin-bottom: 2vh;">&#169; 2026 Leon Tan</p>
-    </section>
-
-    <script src="js/main.js"></script>
-
+    </footer>
 
     <!-- ========== MENU ========== -->
     <div class="menu-overlay">
