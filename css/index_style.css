@@ -12,12 +12,12 @@
     --primary-dark: hsl(158, 83%, 16%);
     --primary: hsl(158, 83%, 24%);
     --primary-light: hsl(158, 83%, 32%);
-}
 
+    --header-height: 64px;
+}
 html {
     scroll-behavior: smooth;
 }
-
 body {
     background: var(--bg-dark);
     width: 100%;
@@ -31,68 +31,95 @@ body {
 }
 
 header {
-    height: 64px;
+    box-sizing: border-box;
+    height: var(--header-height);
     width: 100%;
     position: sticky;
     top: 0;
     z-index: 1000;
-}
+    box-shadow: 0 2px 8px rgba(40, 40, 40, 0.2);
+    background-color: var(--bg-dark); 
+    transition: background-color 0.3s ease;
 
-nav {
-    width: 100%;
     display: flex;
+    justify-content: center;
     align-items: center;
-    justify-content: right;
+}
+nav {
+    display: none;
+    margin: 0 auto;
     position: relative;
     z-index: 1001;
-    box-shadow: 0 4px 8px rgba(40, 40, 40, 0.2);
-
-    background-color: var(--bg-dark); 
-    transition: box-shadow 0.5s ease, background-color 0.3s ease;
 }
-nav h3 {
-    margin-right: auto;
-    font-weight: normal;
+nav a {
+    display: block;
+    text-decoration: none;
+    color: var(--text-light);
+    padding: 0px 12px;
+    font-size: 16px;
+    cursor: pointer;
 }
-nav.active {
+nav a:hover {
+    color: var(--primary);
+}
+header.active {
     background-color: rgb(40, 40, 40);
 }
-nav.active h3 {
+header.active h3 {
     color: white;
 }
-#rubik {
+header #rubik {
     width: 44px;
     margin: 0 4px 0px 12px;
     cursor: pointer;
     transition: transform 0.3s ease;
 }
-#rubik img {
+header #rubik img {
     width: 44px;
     margin: 0;
 }
-#rubik:hover { transform: scale(1.10); }
-#rubik:active { transform: scale(.90); }
-nav a:not(:first-child) { display: none; }
-nav #menu-icon {
+header #rubik:hover { transform: scale(1.10); }
+header #rubik:active { transform: scale(.90); }
+header h3 {
+    margin: 0;
+    font-weight: normal;
+}
+#resume-link-container { 
+    display: none;
+    margin: 0 12px;
+    padding: 8px 16px;
+    border-radius: 10px;
+    background-color: var(--primary-light);
+}
+#resume-link-container:hover {
+    background-color: var(--primary);
+}
+#resume-link-container a {
+    color: white;
+    font-size: 16px; 
+    text-decoration: none;
+    font-weight: light;
+}
+header #menu-icon {
     display: block;
-    margin: 0 20px;
+    margin: 0 20px 0 auto;
     cursor: pointer;
 }
-nav #menu-icon #bar1, 
-nav #menu-icon #bar2, 
-nav #menu-icon #bar3 {
+header #menu-icon #bar1, 
+header #menu-icon #bar2, 
+header #menu-icon #bar3 {
     width: 24px;
     height: 2px;
     background-color: black;
     margin: 4px 0px;
     transition: all 0.4s ease;
 }
-nav #menu-icon.change #bar1 { 
+header #menu-icon.change #bar1 { 
     transform: translate(0, 6px) rotate(-45deg); 
     background-color: white;
 }
-nav #menu-icon.change #bar2 { opacity: 0; }
-nav #menu-icon.change #bar3 { 
+header #menu-icon.change #bar2 { opacity: 0; }
+header #menu-icon.change #bar3 { 
     transform: translate(0, -6px) rotate(45deg); 
     background-color: white;
 }
@@ -122,12 +149,12 @@ nav #menu-icon.change #bar3 {
     opacity: 1;
 }
 
-/* ========== LANDING PAGE ========== */
 main {
     width: 100%;
     box-sizing: border-box;
 }
 
+/* ========== LANDING PAGE ========== */
 #landing {
     box-sizing: border-box;
     background: var(--bg-dark);
@@ -207,7 +234,6 @@ main {
     transition: transform 0.2s ease;
 }
 #intro a:hover {
-    border-color: var(--primary-dark);
     background-color: var(--primary);
     transform: scale(1.05);
 }
@@ -247,24 +273,13 @@ main {
 
 
 @media (min-width: 850px) {
-    nav #menu-icon {
-        display: none;
-    }
-    nav a:not(:first-child) {
-        display: block;
-        text-decoration: none;
-        color: var(--text-light);
-        padding: 0px 12px;
-        font-size: 16px;
-        cursor: pointer;
-    }
-    nav a:hover {
-        text-decoration: underline;
-        color: var(--primary);
-    }
+    header #menu-icon { display: none; }
+    nav { display: flex; }
+    #resume-link-container { display: block; }
 
     #landing {
         flex-direction: row;
+        padding-bottom: 6%;
     }
     #headshot-container {
         margin: 0;
@@ -283,6 +298,7 @@ main {
 }
 
 /* ========== WORK EXPERIENCE & EDUCATION ========== */
+
 .timeline {
     padding-top: 32px;
     display: flex;
@@ -292,6 +308,7 @@ main {
 .timeline h1 {
     margin: 0;
 }
+#experience { scroll-margin-top: calc(var(--header-height)); }
 #experience-container {
     position: relative;
     margin: 5vh auto;
@@ -307,6 +324,7 @@ main {
     background: var(--primary-light);
     border-radius: 50%;
 }
+#education { scroll-margin-top: calc(var(--header-height)); }
 #edu-container {
     position: relative;
     margin: 5vh auto;
@@ -322,6 +340,7 @@ main {
     background: var(--primary-light);
     border-radius: 50%;
 }
+
 
 .timeline-item {
     position: relative;
@@ -361,6 +380,7 @@ main {
     border-top-right-radius: 16px;
     background-color: var(--text-light);
     color: white;
+    scroll-margin-top: calc(var(--header-height));
 }
 #contact-container div {
     width: fit-content;

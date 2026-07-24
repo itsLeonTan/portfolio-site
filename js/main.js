@@ -1,11 +1,14 @@
 
 
-const nav = document.querySelector('nav');
+const header = document.querySelector('header');
 
-function menuFunction(x) {
+document.getElementById("menu-icon").addEventListener('click', menuFunction);
+
+function menuFunction() {
+    const x = document.getElementById("menu-icon");
     x.classList.toggle("change");
     document.querySelector(".menu-overlay").classList.toggle("active");
-    nav.classList.toggle("active");
+    header.classList.toggle("active");
 }
 
 var TxtType = function(el, toRotate, period) {

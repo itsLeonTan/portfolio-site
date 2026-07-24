@@ -12,24 +12,36 @@
 
 <body>
     <header>
+        <a id="rubik" href="index.html">
+            <img src="src/rubik.png" alt="Rubik's Cube">
+        </a>
+        <h3>Leon Tan</h3>
+
         <nav>
-            <a id="rubik" href="index.html">
-                <img src="src/rubik.png" alt="Rubik's Cube">
-            </a>
-            <h3>Leon Tan</h3>
-    
-            <div id="menu-icon" onclick="menuFunction(this)">
-                <div id="bar1"></div>
-                <div id="bar2"></div>
-                <div id="bar3"></div>
-            </div>
-    
-            <a href="#landing">Home</a>
-            <a href="about.html">About</a>
-            <a href="projects.html">Projects</a>
-            <a href="contact.html">Contact</a>    
-        </nav> 
+            <a href="#landing">About</a>
+            <a href="#experience">Experience</a>
+            <a href="#education">Education</a>
+            <a href="#contact-container">Contact</a>    
+        </nav>
+
+        <div id="resume-link-container">
+            <a href="src/Resume, Leon Tan.pdf" target="_blank">Resume</a>
+        </div>
+
+        <div id="menu-icon">
+            <div id="bar1"></div>
+            <div id="bar2"></div>
+            <div id="bar3"></div>
+        </div>
     </header>
+
+    <!-- ========== MENU ========== -->
+    <div class="menu-overlay">
+        <a href="#landing" onclick="menuFunction()">About</a>
+        <a href="#experience" onclick="menuFunction()">Experience</a>
+        <a href="#education" onclick="menuFunction()">Education</a>
+        <a href="#contact-container" onclick="menuFunction()">Contact</a>  
+    </div>
 
     <main>
         <section id="landing">
@@ -48,11 +60,11 @@
                     experience in customer service and team management, I bring adaptability, strong communication skills, 
                     and a practical mindset to every project.
                 </p>
-                <a href="src/Resume, Leon Tan.pdf" target="_blank">VIEW MY RESUME</a>
+                <a href="#experience">LEARN MORE</a>
             </div>
     
             <div id="arrow-container">
-                <a id="arrow-link" href="#timeline">
+                <a id="arrow-link" href="#experience">
                     <p>See More</p>
                     <img src="src/down.png" alt="Down Arrow" id="arrow">
                 </a>
@@ -60,7 +72,7 @@
         </section>
     
         <!-- ========== EXPERIENCE SECTION ========== -->
-        <section class="timeline" id="timeline">
+        <section class="timeline" id="experience">
             <h1>Experience</h1>
             <div id="experience-container">
                 <div class="timeline-item">
@@ -108,7 +120,7 @@
         </section>
     
         <!-- ========== EDUCATION SECTION ========== -->
-        <section class="timeline">
+        <section class="timeline" id="education">
             <h1>Education</h1>
             <div id="edu-container">
                 <div class="timeline-item">
@@ -150,16 +162,9 @@
             <p>&#8611; <a href="www.linkedin.com/in/leon-tan-41b7a616a">LinkedIn</a></p>
             <p>&#8611; <a href="src/Resume, Leon Tan.pdf">Resume</a></p>
         </div>
-        <p style="font-size: 12px; margin-bottom: 2vh;">&#169; 2026 Leon Tan</p>
+        <p style="font-size: 12px; margin-bottom: 2vh;">&#169; 2026 Leon Tan. All rights reserved.</p>
     </footer>
-
-    <!-- ========== MENU ========== -->
-    <div class="menu-overlay">
-        <a href="#landing">Home</a>
-        <a href="about.html">About</a>
-        <a href="projects.html">Projects</a>
-        <a href="contact.html">Contact</a>  
-    </div>
+    
 </body>
 
 </html>
