@@ -1,16 +1,18 @@
 :root {
-    --bg-dark: hsl(0, 0%, 90%);
-    --bg: hsl(0, 0%, 95%);
-    --bg-light: hsl(0, 0%, 100%);
+    --white-dark: hsl(0, 0%, 90%);
+    --white-medium: hsl(0, 0%, 95%);
+    --white-light: hsl(0, 0%, 100%);
 
-    --border: hsl(0, 0%, 80%);
+    --grey-light: hsl(0, 0%, 80%);
+    --grey-medium: hsl(0, 0%, 70%);
+    --grey-dark: hsl(0, 0%, 60%);
 
-    --text-dark: hsl(0, 0%, 0%);
-    --text: hsl(0, 0%, 10%);
-    --text-light: hsl(0, 0%, 20%);
+    --black-dark: hsl(0, 0%, 0%);
+    --black-medium: hsl(0, 0%, 10%);
+    --black-light: hsl(0, 0%, 20%);
 
     --primary-dark: hsl(158, 83%, 16%);
-    --primary: hsl(158, 83%, 24%);
+    --primary-medium: hsl(158, 83%, 24%);
     --primary-light: hsl(158, 83%, 32%);
 
     --header-height: 64px;
@@ -19,7 +21,7 @@ html {
     scroll-behavior: smooth;
 }
 body {
-    background: var(--bg-dark);
+    background-color: var(--white-light);
     width: 100%;
     display: flex;
     margin: 0;
@@ -27,18 +29,18 @@ body {
     align-items: center;
     justify-content: center;
     font-family: "Montserrat", sans-serif;
-    color: var(--text-light);
+    color: var(--black-light);
 }
+*, *::before, *::after { box-sizing: border-box; }
 
 header {
-    box-sizing: border-box;
     height: var(--header-height);
     width: 100%;
     position: sticky;
     top: 0;
     z-index: 1000;
-    box-shadow: 0 2px 8px rgba(40, 40, 40, 0.2);
-    background-color: var(--bg-dark); 
+    backdrop-filter: blur(12px);
+    background-color: rgba(255, 255, 255, 0.8); 
     transition: background-color 0.3s ease;
 
     display: flex;
@@ -54,13 +56,14 @@ nav {
 nav a {
     display: block;
     text-decoration: none;
-    color: var(--text-light);
+    color: var(--black-light);
     padding: 0px 12px;
     font-size: 16px;
+    font-weight: 500;
     cursor: pointer;
 }
 nav a:hover {
-    color: var(--primary);
+    color: var(--primary-light);
 }
 header.active {
     background-color: rgb(40, 40, 40);
@@ -80,19 +83,20 @@ header #rubik img {
 }
 header #rubik:hover { transform: scale(1.10); }
 header #rubik:active { transform: scale(.90); }
-header h3 {
-    font-weight: normal;
+header h2 {
+    font-weight: 500;
     margin: 0;
+    margin-left: 4px;
 }
 #resume-link-container { 
     display: none;
     margin: 0 12px;
     padding: 8px 16px;
-    border-radius: 10px;
     background-color: var(--primary-light);
+    border-radius: 20px;
 }
 #resume-link-container:hover {
-    background-color: var(--primary);
+    background-color: var(--primary-medium);
 }
 #resume-link-container a {
     color: white;
@@ -151,13 +155,11 @@ header #menu-icon.change #bar3 {
 
 main {
     width: 100%;
-    box-sizing: border-box;
 }
 
 /* ========== LANDING PAGE ========== */
 #landing {
-    box-sizing: border-box;
-    background: var(--bg-dark);
+    background-color: var(--white-light);
     width: 100%;
     height: calc(100vh - 64px);
     height: calc(100dvh - 64px);; /* For mobile devices. Dynamic view height. */
@@ -190,7 +192,7 @@ main {
 }
 
 #intro {
-    width: fit-content;
+    width: min(90%, 400px);
     margin: 0px 30px 48px 30px;
     flex-grow: 1;
     display: flex;
@@ -221,10 +223,10 @@ main {
 #intro p {
     font-size: min(16px, 2.5vh);
     margin: 0px;
-    color: var(--text-light);
+    color: var(--black-light);
 }
 #intro a {
-    border-radius: 10px;
+    border-radius: 20px;
     padding: min(12px, 2vh); 
     margin-top: 16px;
     font-size: min(12px, 2vh);
@@ -234,7 +236,7 @@ main {
     transition: transform 0.2s ease;
 }
 #intro a:hover {
-    background-color: var(--primary);
+    background-color: var(--primary-medium);
     transform: scale(1.05);
 }
 #intro a:active { transform: scale(.9); }
@@ -314,7 +316,7 @@ main {
     margin: 5vh auto;
     padding-left: 32px;
     width: min(80vw, 500px);
-    border-left: 2px solid var(--border);
+    border-left: 2px solid var(--grey-light);
 }
 .experience-dot {
     position: absolute;
@@ -330,7 +332,7 @@ main {
     margin: 5vh auto;
     padding-right: 32px;
     width: min(80vw, 500px);
-    border-right: 2px solid var(--border);
+    border-right: 2px solid var(--grey-light);
 }
 .edu-dot {
     position: absolute;
@@ -346,7 +348,7 @@ main {
     margin-bottom: 32px;
 }
 .timeline-content {
-    background: var(--bg);
+    background: var(--white-medium);
     padding: 20px;
     border-radius: 12px;
 }
@@ -355,11 +357,11 @@ main {
 }
 .timeline-content .date {
     font-size: 12px;
-    color: var(--text-light);
+    color: var(--black-light);
 }
 .timeline-content p {
     margin: 10px 0px;
-    color: var(--text);
+    color: var(--black-medium);
 }
 .timeline-content ul {
     margin: 10px 0px;
@@ -373,7 +375,6 @@ main {
     display: flex;
     flex-direction: column;
     align-items: center;
-    box-sizing: border-box;
     padding: 40px 0;
     margin-bottom: 40px; /* temporary */
 }
@@ -393,17 +394,16 @@ main {
     gap: 4px;
 }
 .skills-items > div {
-    border: 1px solid var(--border);
-    background-color: var(--bg-light);
-    color: var(--text-light);
+    background-color: var(--white-medium);
+    color: var(--black-light);
     padding: 4px 12px;
     border-radius: 16px;
-    transition: background-color 0.5s ease, color 0.5s ease, border-color 0.5s ease;
+    transition: background-color 0.5s ease, color 0.5s ease;
 }
 .skills-items > div:hover {
     background-color: var(--primary-light);
     color: white;
-    border-color: var(--primary);
+    border-color: var(--primary-medium);
 }
 
 
@@ -417,7 +417,7 @@ main {
     width: 100%;
     border-top-left-radius: 16px;
     border-top-right-radius: 16px;
-    background-color: var(--text-light);
+    background-color: var(--black-light);
     color: white;
     scroll-margin-top: calc(var(--header-height));
 }
