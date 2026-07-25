@@ -19,6 +19,8 @@
 }
 html {
     scroll-behavior: smooth;
+    scrollbar-color: var(--primary-light) var(--white-dark);
+    scrollbar-width: thin;
 }
 body {
     background-color: var(--white-light);
@@ -243,7 +245,7 @@ main {
 
 #arrow-container {
     position: absolute; 
-    bottom: 2px;
+    bottom: 8px;
     height: fit-content;
     cursor: pointer;
     opacity: 0.4;
@@ -259,10 +261,6 @@ main {
     text-decoration: none;
     color: black;
 }
-#arrow-container #arrow-link p {
-    margin: -4px;
-    font-size: 12px;
-}
 #arrow-container #arrow-link #arrow {
     width: 28px;
     height: 20px;
@@ -270,37 +268,10 @@ main {
 }
 @keyframes bounce {
     0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(2px); }
-}
-
-
-@media (min-width: 850px) {
-    header #menu-icon { display: none; }
-    nav { display: flex; }
-    #resume-link-container { display: block; }
-
-    #landing {
-        flex-direction: row;
-        padding-bottom: 6%;
-    }
-    #headshot-container {
-        margin: 0;
-        flex-grow: 0;
-        width: max(28vw, 400px);
-    }
-    #headshot {
-        width: min(32vw, 300px);
-    }
-    #intro {
-        margin-left: 0;
-        margin-bottom: 0;
-        flex-grow: 0;
-        width: 36vw;
-    }
+    50% { transform: translateY(4px); }
 }
 
 /* ========== WORK EXPERIENCE & EDUCATION ========== */
-
 .timeline {
     padding-top: 32px;
     display: flex;
@@ -406,34 +377,101 @@ main {
     border-color: var(--primary-medium);
 }
 
-
 /* ========== CONTACT ========== */
-#contact-container {
+#contact {
+    background-color: var(--white-dark);
     display: flex;
     flex-direction: column;
+    align-items: center;
+}
+#contact > div h1 {
+    margin: 0;
+    font-weight: 500;
+}
+#contact #infohead {
+    flex-grow: 1;
+    padding: 48px 32px 16px 32px;
+}
+#contact #info {
+    flex-grow: 1;
+    padding: 16px 32px 48px 32px;
+    display: flex;
+    flex-direction: column;
+}
+#contact #info > a {
+    text-decoration: none;
+    color: black;
+    display: inline-block;
+    padding-bottom: 16px; 
+}
+#contact #info > a:hover {
+    color: var(--primary-light);
+}
+#contact #info #links {
+    display: flex;
+    gap: 8px;
+}
+#contact #info #links > a {
+    background-color: var(--primary-light);
+    padding: 12px 24px;
+    margin: 0;
+    color: white;
+    font-weight: 400;
+    text-decoration: none;
+    display:inline-block;
+    border-radius: 24px;
+}
+#contact #info #links > a:hover {
+    background-color: var(--primary-medium);
+}
+
+/* ========== FOOTER ========== */
+footer {
+    display: flex;
     justify-content: center;
     align-items: center;
-    height: 28vh;
     width: 100%;
-    border-top-left-radius: 16px;
-    border-top-right-radius: 16px;
-    background-color: var(--black-light);
-    color: white;
+    background-color: var(--primary-dark);
     scroll-margin-top: calc(var(--header-height));
 }
-#contact-container div {
-    width: fit-content;
-    margin: auto auto auto 8vw;
+footer p {
+    font-size: 12px;
+    color: white;
+    font-weight: 100;
+    font-style: italic;
 }
-#contact-container div h2, 
-#contact-container div p {
-    margin: 0;
-    font-weight: normal;
-}
-#contact-container div a {
-    color: hsl(140, 100%, 50%);
-    font-size: 16px;
-}
-#contact-container div a:hover {
-    color: hsl(60, 100%, 50%);
+
+
+@media (min-width: 850px) {
+    header #menu-icon { display: none; }
+    nav { display: flex; }
+    #resume-link-container { display: block; }
+
+    #landing {
+        flex-direction: row;
+        padding-bottom: 6%;
+    }
+    #headshot-container {
+        margin: 0;
+        flex-grow: 0;
+        width: max(28vw, 400px);
+    }
+    #headshot {
+        width: min(32vw, 300px);
+    }
+    #intro {
+        margin-left: 0;
+        margin-bottom: 0;
+        flex-grow: 0;
+        width: 36vw;
+    }
+
+    #contact {
+        flex-direction: row;
+        align-items: start;
+    }
+    #contact #infohead,
+    #contact #info {
+        padding: 60px 80px;
+    }
 }
