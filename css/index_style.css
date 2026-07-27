@@ -383,26 +383,23 @@ main {
     display: flex;
     flex-direction: column;
     align-items: center;
-}
-#contact > div h1 {
-    margin: 0;
-    font-weight: 500;
-}
-#contact #infohead {
-    flex-grow: 1;
-    padding: 48px 32px 16px 32px;
+    justify-content: center;
 }
 #contact #info {
-    flex-grow: 1;
-    padding: 16px 32px 48px 32px;
+    padding: 60px 0;
     display: flex;
     flex-direction: column;
+    width: fit-content;
+}
+#contact #info h1 {
+    margin: 0 0 4px 0;
+    font-weight: 500;
 }
 #contact #info > a {
     text-decoration: none;
     color: black;
     display: inline-block;
-    padding-bottom: 16px; 
+    padding-bottom: 12px; 
 }
 #contact #info > a:hover {
     color: var(--primary-light);
@@ -413,7 +410,7 @@ main {
 }
 #contact #info #links > a {
     background-color: var(--primary-light);
-    padding: 12px 24px;
+    padding: 8px 16px;
     margin: 0;
     color: white;
     font-weight: 400;
@@ -464,14 +461,5 @@ footer p {
         margin-bottom: 0;
         flex-grow: 0;
         width: 36vw;
-    }
-
-    #contact {
-        flex-direction: row;
-        align-items: start;
-    }
-    #contact #infohead,
-    #contact #info {
-        padding: 60px 80px;
     }
 }
