@@ -1,4 +1,6 @@
 :root {
+    --beige: rgb(249, 246, 244);
+
     --white-dark: hsl(0, 0%, 90%);
     --white-medium: hsl(0, 0%, 95%);
     --white-light: hsl(0, 0%, 100%);
@@ -157,14 +159,17 @@ header #menu-icon.change #bar3 {
 
 main {
     width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 /* ========== LANDING PAGE ========== */
 #landing {
-    background-color: var(--white-light);
     width: 100%;
     height: calc(100vh - 64px);
-    height: calc(100dvh - 64px);; /* For mobile devices. Dynamic view height. */
+    height: calc(100dvh - 64px); /* For mobile devices. Dynamic view height. */
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -187,15 +192,15 @@ main {
     from { transform: scale(0) rotate(0deg); }
     to { transform: scale(1) rotate(360deg); }
 }
-#headshot{
-    width: min(64%, 260px, 30vh);
+#headshot {
+    width: min(50vw, 260px);
     border-radius: 50%;
     margin: 0;
 }
 
 #intro {
     width: min(90%, 400px);
-    margin: 0px 30px 48px 30px;
+    margin: 0px 30px;
     flex-grow: 1;
     display: flex;
     flex-direction: column;
@@ -284,7 +289,7 @@ main {
 #experience { scroll-margin-top: calc(var(--header-height)); }
 #experience-container {
     position: relative;
-    margin: 5vh auto;
+    margin: 24px auto;
     padding-left: 32px;
     width: min(80vw, 500px);
     border-left: 2px solid var(--grey-light);
@@ -300,7 +305,7 @@ main {
 #education { scroll-margin-top: calc(var(--header-height)); }
 #edu-container {
     position: relative;
-    margin: 5vh auto;
+    margin: 24px auto;
     padding-right: 32px;
     width: min(80vw, 500px);
     border-right: 2px solid var(--grey-light);
@@ -356,7 +361,7 @@ main {
     width: min(90%, 450px);
 }
 .skills-container h3 {
-    margin: 36px 0 16px 0;
+    margin: 28px 0 16px 0;
 }
 .skills-items {
     width: 100%;
@@ -379,6 +384,7 @@ main {
 
 /* ========== CONTACT ========== */
 #contact {
+    width: 100%;
     background-color: var(--white-dark);
     display: flex;
     flex-direction: column;
@@ -386,7 +392,7 @@ main {
     justify-content: center;
 }
 #contact #info {
-    padding: 60px 0;
+    padding: 48px 0;
     display: flex;
     flex-direction: column;
     width: fit-content;
@@ -462,4 +468,8 @@ footer p {
         flex-grow: 0;
         width: 36vw;
     }
+    #intro h2 { font-size: 32px; }
+    #intro h4 { font-size: 18px; }
+    #intro p { font-size: 18px; }
+    #intro a { font-size: 14px; }
 }
