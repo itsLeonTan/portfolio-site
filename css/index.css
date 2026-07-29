@@ -33,9 +33,18 @@ body {
     align-items: center;
     justify-content: center;
     font-family: "Montserrat", sans-serif;
-    color: var(--black-light);
 }
 *, *::before, *::after { box-sizing: border-box; }
+
+.ani {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.5s ease;
+}
+.ani.show {
+    opacity: 1;
+    transform: translateY(0);
+}
 
 header {
     height: var(--header-height);
@@ -177,20 +186,13 @@ main {
 }
 
 #headshot-container {
+    background-color: white;
     display: flex;
     flex-grow: 1;
     align-items: center;
     justify-content: center;
     width: fit-content;
     margin: 12px 30px;
-
-    animation-name: spin;
-    animation-duration: 1s;
-    animation-timing-function: cubic-bezier(0,0,0,1.2);
-}
-@keyframes spin {
-    from { transform: scale(0) rotate(0deg); }
-    to { transform: scale(1) rotate(360deg); }
 }
 #headshot {
     width: min(50vw, 260px);
@@ -286,7 +288,7 @@ main {
 .timeline h1 {
     margin: 0;
 }
-#experience { scroll-margin-top: calc(var(--header-height)); }
+#experience {  scroll-margin-top: calc(var(--header-height)); }
 #experience-container {
     position: relative;
     margin: 24px auto;

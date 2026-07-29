@@ -67,3 +67,18 @@ window.onload = function() {
     css.innerHTML = ".typewrite > .wrap { border-right: 2px solid var(--primary-light); animation: blink 0.7s infinite; } @keyframes blink { 0%, 49% { border-right-color: var(--primary-light); } 50%, 100% { border-right-color: transparent; } }";
     document.body.appendChild(css);
 };
+
+
+
+const boxes = document.getElementsByClassName("ani");
+
+function reveal() {
+    for (let box of boxes) {
+        if (box.getBoundingClientRect().top < window.innerHeight * 0.8) {
+            box.classList.add("show");
+        }
+    }
+}
+
+window.addEventListener("scroll", reveal);
+reveal();
