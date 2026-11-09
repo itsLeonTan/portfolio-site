@@ -507,7 +507,7 @@ footer {
     display: flex;
     justify-content: space-between;
     gap: 4px 16px;
-    margin-top: 96px;
+    margin-top: 48px;
     padding-block: 28px;
     font-size: .65rem;
     color: var(--muted);
