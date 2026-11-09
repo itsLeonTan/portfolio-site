@@ -85,6 +85,64 @@ earlierToggle.addEventListener("click", function () {
     earlierWork.setAttribute("aria-hidden", !open);
 });
 
+/* ========== PROJECTS ========== */
+// Add, remove or reorder projects here. `tags` is optional.
+const projects = [
+    {
+        name: "TriviaHub",
+        description: "A simple web-based trivia game, built to practice API integration.",
+        url: "https://triviahub.itsleontan.com",
+        tags: ["Trivia", "API integration"]
+    },
+    {
+        name: "WatchWorth",
+        description: "Guess the final Sotheby's auction price of luxury watches across five rounds.",
+        url: "https://watchworth.itsleontan.com",
+        tags: ["Guessing game", "Luxury watches"]
+    }
+];
+
+function el(tag, className, text) {
+    const node = document.createElement(tag);
+    if (className) node.className = className;
+    if (text) node.textContent = text;
+    return node;
+}
+
+const projectList = document.getElementById("project-list");
+
+for (const project of projects) {
+    const item = el("li", "ani");
+    const link = el("a", "project");
+    link.href = project.url;
+    link.target = "_blank";
+    link.rel = "noopener noreferrer";
+
+    const head = el("span", "project-head");
+    head.append(el("span", "project-name", project.name));
+    head.append(el("span", "project-arrow", "↗"));
+    head.lastChild.setAttribute("aria-hidden", "true");
+
+    const meta = el("span", "project-meta");
+    meta.append(el("span", "project-url", new URL(project.url).hostname));
+    for (const tag of project.tags || []) {
+        meta.append(el("span", "project-tag", tag));
+    }
+
+    link.append(head, el("span", "project-desc", project.description), meta);
+    item.append(link);
+    projectList.append(item);
+}
+
+// Spotlight glow follows the cursor (offsets match `.project::before` inset).
+projectList.addEventListener("pointermove", function (e) {
+    const link = e.target.closest(".project");
+    if (!link) return;
+    const rect = link.getBoundingClientRect();
+    link.style.setProperty("--x", (e.clientX - rect.left + 14) + "px");
+    link.style.setProperty("--y", (e.clientY - rect.top - 2) + "px");
+});
+
 /* ========== SCROLL REVEAL ========== */
 const revealObserver = new IntersectionObserver(function (entries) {
     for (const entry of entries) {

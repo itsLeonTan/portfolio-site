@@ -490,6 +490,95 @@ p { margin: 0 0 1em; }
 }
 .divider-toggle button[aria-expanded="true"] .arrow { transform: rotate(180deg); }
 
+/* ---------- Projects ---------- */
+.projects {
+    /* Pull the first row up so its title sits the same distance below the
+       heading as the first entry in other sections. */
+    margin: -14px 0 0;
+    padding: 0;
+    list-style: none;
+}
+.projects li + li { border-top: 1px solid var(--border); }
+
+.project {
+    --x: 50%;
+    --y: 50%;
+    position: relative;
+    display: grid;
+    gap: 2px;
+    padding: 14px 0;
+    color: var(--text);
+    text-decoration: none;
+    isolation: isolate;
+}
+/* Hover card: green-tinted wash, a cursor-following spotlight (--x/--y set
+   in index.js), a thin accent outline and a soft outer glow. */
+.project::before {
+    content: "";
+    position: absolute;
+    inset: 2px -14px;
+    z-index: -1;
+    border-radius: 12px;
+    background:
+        radial-gradient(220px circle at var(--x) var(--y), rgb(var(--accent) / .16), transparent 70%),
+        rgb(var(--accent) / .04);
+    box-shadow:
+        inset 0 0 0 1px rgb(var(--accent) / .22),
+        0 0 28px -6px rgb(var(--accent) / .35);
+    opacity: 0;
+    transform: scale(.985);
+    transition: opacity .3s ease, transform .4s var(--ease-out-expo);
+}
+.project:hover,
+.project:focus-visible { color: var(--text); outline: none; }
+.project:hover::before,
+.project:focus-visible::before {
+    opacity: 1;
+    transform: none;
+}
+.project:active::before { transform: scale(.99); }
+.project .project-name { transition: color .25s ease, text-shadow .25s ease; }
+.project:hover .project-name,
+.project:focus-visible .project-name {
+    color: var(--accent-c);
+    text-shadow: 0 0 18px rgb(var(--accent) / .45);
+}
+
+.project-head {
+    display: flex;
+    align-items: baseline;
+    gap: 6px;
+}
+.project-name {
+    color: var(--heading);
+    font-size: .95rem;
+    font-weight: 500;
+    letter-spacing: -.01em;
+}
+.project-arrow {
+    color: var(--muted);
+    font-size: .8rem;
+    transition: color .2s ease, transform .3s var(--ease-out-expo);
+}
+.project:hover .project-arrow,
+.project:focus-visible .project-arrow {
+    color: var(--accent-c);
+    transform: translate(2px, -2px);
+}
+
+.project-meta {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 6px;
+    font-family: var(--font-mono);
+    font-size: .65rem;
+    color: var(--muted);
+}
+.project-tag::before {
+    content: "·";
+    margin: 0 7px;
+}
+
 /* ---------- Contact ---------- */
 .inline-links {
     display: flex;
@@ -546,6 +635,10 @@ footer {
         align-items: center;
         text-align: center;
     }
+}
+
+@media (max-width: 380px) {
+    nav a { padding-inline: 6px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
