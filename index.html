@@ -1,216 +1,212 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>it's Leon Tan</title>
+    <meta name="description" content="Leon Tan — computer science student who enjoys solving problems with code.">
     <link rel="icon" type="image/x-icon" href="src/rubik.png">
+
+    <!-- Apply saved / system theme before first paint to avoid a flash -->
+    <script>
+        (function () {
+            var root = document.documentElement;
+            var theme;
+            try { theme = localStorage.getItem("theme"); } catch (e) {}
+            if (theme !== "light" && theme !== "dark") {
+                theme = window.matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark";
+            }
+            root.classList.remove("light", "dark");
+            root.classList.add(theme, "js");
+        })();
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap">
     <link rel="stylesheet" href="css/index.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com">
     <script src="js/index.js" defer></script>
 </head>
 
 <body>
+    <div class="rails" aria-hidden="true"></div>
+
+    <!-- ========== HEADER ========== -->
     <header>
-        <a id="rubik" href="index.html">
-            <img src="src/rubik.png" alt="Rubik's Cube">
-        </a>
-        <h2>Leon Tan</h2>
-
-        <nav>
-            <a href="#landing">About</a>
-            <a href="#experience">Experience</a>
-            <a href="#education">Education</a>
-            <a href="#contact-container">Contact</a>    
-        </nav>
-
-        <div id="resume-link-container">
-            <a href="src/Resume, Leon Tan.pdf" target="_blank">Resume</a>
+        <div class="header-blur" aria-hidden="true">
+            <span></span><span></span><span></span>
         </div>
 
-        <div id="menu-icon">
-            <div id="bar1"></div>
-            <div id="bar2"></div>
-            <div id="bar3"></div>
+        <div class="container header-inner">
+            <a id="avatar" class="glass" href="#about" aria-label="Leon Tan — back to top">
+                <img src="src/headshot.jpg" alt="Leon Tan" width="48" height="48">
+            </a>
+
+            <nav class="glass" aria-label="Sections">
+                <a href="#about" aria-label="About" title="About">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+                </a>
+                <a href="#experience" aria-label="Experience" title="Experience">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="7" width="18" height="13" rx="3"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2M3 13h18"/></svg>
+                </a>
+                <a href="#education" aria-label="Education" title="Education">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 9l10-5 10 5-10 5z"/><path d="M6 11v5c0 1.5 2.7 3 6 3s6-1.5 6-3v-5"/></svg>
+                </a>
+                <a href="#skills" aria-label="Skills" title="Skills">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 7l-5 5 5 5M16 7l5 5-5 5M14 4l-4 16"/></svg>
+                </a>
+                <a href="#contact" aria-label="Contact" title="Contact">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="M3 7l9 6 9-6"/></svg>
+                </a>
+            </nav>
+
+            <button id="theme-toggle" class="glass" type="button" aria-label="Switch theme">
+                <svg class="icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+                <svg class="icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+            </button>
         </div>
     </header>
 
-    <!-- ========== MENU ========== -->
-    <div class="menu-overlay">
-        <a href="#landing" onclick="menuFunction()">About</a>
-        <a href="#experience" onclick="menuFunction()">Experience</a>
-        <a href="#education" onclick="menuFunction()">Education</a>
-        <a href="#contact-container" onclick="menuFunction()">Contact</a> 
-        <a href="src/Resume, Leon Tan.pdf" target="_blank">Resume</a> 
-    </div>
+    <!-- ========== MAIN ========== -->
+    <main class="container">
 
-    <main>
-        <section id="landing" class="ani">
-            <div id="headshot-container">
-                <img id="headshot" src="src/headshot.jpg" alt="Leon Tan">
-            </div> 
-    
-            <div id="intro">
+        <!-- ABOUT -->
+        <section id="about" class="ani">
+            <p class="eyebrow">Leon Tan &middot; Computer Science Student</p>
+            <h1 class="typewrite" data-type='["Hi, I&apos;m Leon.", "Glad you&apos;re here!", "Let&apos;s work together!", "Stay curious!", "Never stop learning!"]' data-period="2000"><span class="wrap"></span></h1>
+
+            <p>
+                I am a computer science student at Thompson River University who enjoys solving
+                problems with code and developing reliable solutions.
+            </p>
+            <p>
+                With IT training and over three years of work experience in customer service and
+                team management, I bring adaptability, strong communication skills, and a practical
+                mindset to every project.
+            </p>
+
+            <div class="actions">
+                <a class="btn btn-primary" href="src/Resume, Leon Tan.pdf" target="_blank">Resume ↗</a>
+                <a class="btn" href="#contact">Get in touch</a>
+            </div>
+        </section>
+
+        <!-- EXPERIENCE -->
+        <section id="experience">
+            <h2 class="ani">Experience</h2>
+
+            <dl class="entries">
+                <dt class="ani">2024–2025</dt>
+                <dd class="ani">
+                    <strong>Laboratory Administrator <span class="at">@</span> GeoPacific Consultants</strong>
+                    <small>Vancouver, BC</small>
+                </dd>
+
+                <dt class="ani">2022–2024</dt>
+                <dd class="ani">
+                    <strong>Supervisor, Barista &amp; Baker <span class="at">@</span> Matchstick</strong>
+                    <small>Chinatown &amp; Yaletown, Vancouver, BC</small>
+                </dd>
+            </dl>
+
+            <div id="earlier-work" class="collapse" aria-hidden="true" inert>
                 <div>
-                    <h2 class="typewrite" data-type='["Hi, I&apos;m Leon.", "Glad you&apos;re here!", "Let&apos;s work together!", "Stay curious!", "Never stop learning!"]' data-period="2000"><span class="wrap"></span></h2>
-                </div>
+                    <dl class="entries">
+                        <dt>2021–2022</dt>
+                        <dd>
+                            <strong>Key Holder <span class="at">@</span> Ammolite &amp; Jade / Ammolite Museum</strong>
+                            <small>Richmond &amp; Vancouver, BC</small>
+                            <p>Enhanced sales and revenue through self-taught jewelry crafting skills.</p>
+                        </dd>
 
-                <h4>PROFILE</h4>
+                        <dt>2018</dt>
+                        <dd>
+                            <strong>Exhibitor &amp; Promoter <span class="at">@</span> Tube Home Furniture</strong>
+                            <small>Malaysia</small>
+                            <p>Represented TubeHome in two different exhibitions, alongside work as a machine operator, factory and warehouse worker.</p>
+                        </dd>
+                    </dl>
+                </div>
+            </div>
 
-                <p>
-                    I am a computer science student at Thompson River University who enjoys solving 
-                    problems with code and developing reliable solutions. With IT training and over three years of work 
-                    experience in customer service and team management, I bring adaptability, strong communication skills, 
-                    and a practical mindset to every project.
-                </p>
-                
-                <a href="#experience">LEARN MORE</a>
-            </div>
-    
-            <div id="arrow-container">
-                <a id="arrow-link" href="#experience">
-                    <img src="src/down.png" alt="Down Arrow" id="arrow">
-                </a>
-            </div>
-        </section>
-    
-        <!-- ========== EXPERIENCE SECTION ========== -->
-        <section class="timeline" id="experience">
-            <h1 class="ani">Experience</h1>
-            <div id="experience-container">
-                <div class="timeline-item ani">
-                    <div class="experience-dot"></div>
-                    <div class="timeline-content">
-                        <h3>GeoPacific Consultants | Vancouver, BC</h3>
-                        <span class="date">August 2024 - August 2025</span>
-                        <p>Laboratory Administrator</p>
-                    </div>
-                </div>
-        
-                <div class="timeline-item ani">
-                    <div class="experience-dot"></div>
-                    <div class="timeline-content">
-                        <h3>Matchstick Chinatown & Yaletown | Vancouver, BC</h3>
-                        <span class="date">May 2022 - September 2024</span>
-                        <p>Supervisor, Barista, and Baker</p>
-                    </div>
-                </div>
-        
-                <div class="timeline-item ani">
-                    <div class="experience-dot"></div>
-                    <div class="timeline-content">
-                        <h3>Ammolite & Jade | Richmond, BC & Ammolite Museum | Vancouver, BC</h3>
-                        <span class="date">May 2021 - August 2022</span>
-                        <p>Key Holder</p>
-                        <ul>
-                            <li>Enhanced sales and revenue through self-taught jewelry crafting skills.</li>
-                        </ul>
-                    </div>
-                </div>
-        
-                <div class="timeline-item ani">
-                    <div class="experience-dot"></div>
-                    <div class="timeline-content">
-                        <h3>Tube Home Furniture | Malaysia</h3>
-                        <span class="date">April - November 2018</span>
-                        <p>Exhibitor, Promoter, Machine Operator, Factory and Warehouse Worker</p>
-                        <ul>
-                            <li>Represented TubeHome in two different exhibition.</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </section>
-    
-        <!-- ========== EDUCATION SECTION ========== -->
-        <section class="timeline" id="education">
-            <h1 class="ani">Education</h1>
-            <div id="edu-container">
-                <div class="timeline-item ani">
-                    <div class="edu-dot"></div>
-                    <div class="timeline-content">
-                        <h3>Thompson River University | Kamloops, BC</h3>
-                        <span class="date">Current</span>
-                        <p>Bachelor Degree of Computer Science</p>
-                    </div>
-                </div>
-        
-                <div class="timeline-item ani">
-                    <div class="edu-dot"></div>
-                    <div class="timeline-content">
-                        <h3>Columbia College | Vancouver, BC</h3>
-                        <span class="date">Graduated 2022</span>
-                        <p>Associate Degree of Computer Science</p>
-                    </div>
-                </div>
-        
-                <div class="timeline-item ani">
-                    <div class="edu-dot"></div>
-                    <div class="timeline-content">
-                        <h3>Kolej Tuanku Ja'afar | Malaysia</h3>
-                        <span class="date">Graduated 2018</span>
-                        <p>IGCSE O-Levels</p>
-                    </div>
-                </div>
+            <div class="divider-toggle">
+                <span aria-hidden="true"></span>
+                <button id="earlier-toggle" type="button" aria-expanded="false" aria-controls="earlier-work">
+                    <span class="label">Earlier work</span> <span class="arrow" aria-hidden="true">↓</span>
+                </button>
+                <span aria-hidden="true"></span>
             </div>
         </section>
 
-        <!-- ========== SKILLS SECTION ========== -->
+        <!-- EDUCATION -->
+        <section id="education">
+            <h2 class="ani">Education</h2>
+
+            <dl class="entries">
+                <dt class="ani">Current</dt>
+                <dd class="ani">
+                    <strong>Bachelor of Computer Science <span class="at">@</span> Thompson River University</strong>
+                    <small>Kamloops, BC</small>
+                </dd>
+
+                <dt class="ani">2022</dt>
+                <dd class="ani">
+                    <strong>Associate Degree of Computer Science <span class="at">@</span> Columbia College</strong>
+                    <small>Vancouver, BC</small>
+                </dd>
+
+                <dt class="ani">2018</dt>
+                <dd class="ani">
+                    <strong>IGCSE O-Levels <span class="at">@</span> Kolej Tuanku Ja'afar</strong>
+                    <small>Malaysia</small>
+                </dd>
+            </dl>
+        </section>
+
+        <!-- SKILLS -->
         <section id="skills">
-            <h1 class="ani">Skills</h1>
-            <div class="skills-container ani">
-                <h3>Languages</h3>
-                <div class="skills-items">
-                    <div>Java</div>
-                    <div>JavaScript</div>
-                    <div>Python</div>
-                    <div>C++</div>
-                    <div>HTML/CSS</div>
-                    <div>JSON</div>
-                </div>
-            </div>
+            <h2 class="ani">Skills</h2>
 
-            <div class="skills-container ani">
-                <h3>Certificates</h3>
-                <div class="skills-items">
-                    <div>CompTIA A+</div>
-                    <div>Scrum Fundamentals</div>
-                </div>
-            </div>
+            <dl class="entries">
+                <dt class="ani">Languages</dt>
+                <dd class="ani tags">
+                    <span>Java</span><span>JavaScript</span><span>Python</span><span>C++</span>
+                    <span>HTML/CSS</span><span>JSON</span><span>PHP</span><span>SQL</span>
+                </dd>
 
-            <div class="skills-container ani">
-                <h3>Interests</h3>
-                <div class="skills-items">
-                    <div>Reading</div>
-                    <div>Tennis</div>
-                    <div>Hiking</div>
-                    <div>Running</div>
-                    <div>Travel</div>
-                    <div>Watches</div>
-                    <div>Minerals</div>
-                    <div>Fountain Pens</div>
-                </div>
-            </div>
+                <dt class="ani">Certificates</dt>
+                <dd class="ani tags">
+                    <span>CompTIA A+</span><span>Scrum Fundamentals</span>
+                </dd>
+
+                <dt class="ani">Interests</dt>
+                <dd class="ani tags">
+                    <span>Reading</span><span>Tennis</span><span>Hiking</span><span>Running</span>
+                    <span>Travel</span><span>Watches</span><span>Minerals</span><span>Fountain Pens</span>
+                </dd>
+            </dl>
         </section>
 
-        <!-- ========== CONTACT ========== -->
-        <section id="contact">
-            <div id="info" class="ani">
-                <h1>Get in Touch</h1>
-                <a href="mailto:itsleontan@gmail.com">itsleontan@gmail.com</a>
-                <div id="links">
-                    <a href="https://www.linkedin.com/in/itsleontan" target="_blank">LinkedIn</a>
-                    <a href="https://github.com/itsLeonTan" target="_blank">GitHub</a>
-                    <a href="src/Resume, Leon Tan.pdf" target="_blank">Resume</a>
-                </div>
-            </div>
+        <!-- CONTACT -->
+        <section id="contact" class="ani">
+            <h2>Get in touch</h2>
+            <p>
+                Whether it's a project, an opportunity, or just a chat, my inbox is open.
+                The quickest way to reach me is by <a href="mailto:itsleontan@gmail.com">email</a>.
+            </p>
+            <ul class="inline-links">
+                <li><a href="mailto:itsleontan@gmail.com">Email</a></li>
+                <li><a href="https://www.linkedin.com/in/itsleontan" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a></li>
+                <li><a href="https://github.com/itsLeonTan" target="_blank" rel="noopener noreferrer">GitHub ↗</a></li>
+                <li><a href="src/Resume, Leon Tan.pdf" target="_blank">Resume ↗</a></li>
+            </ul>
         </section>
     </main>
 
-    <footer id="contact-container">
-        <p>&#169; 2026 Leon Tan. All rights reserved.</p>
+    <!-- ========== FOOTER ========== -->
+    <footer class="container">
+        <div>&#169; 2026 Leon Tan. All rights reserved.</div>
     </footer>
-    
 </body>
 
 </html>
