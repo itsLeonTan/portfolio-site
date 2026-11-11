@@ -77,7 +77,7 @@ for (const el of document.getElementsByClassName("typewrite")) {
 const earlierToggle = document.getElementById("earlier-toggle");
 const earlierWork = document.getElementById("earlier-work");
 
-earlierToggle.addEventListener("click", function () {
+if (earlierToggle && earlierWork) earlierToggle.addEventListener("click", function () {
     const open = earlierWork.classList.toggle("open");
     earlierToggle.setAttribute("aria-expanded", open);
     earlierToggle.querySelector(".label").textContent = open ? "Show less" : "Earlier work";
@@ -111,7 +111,7 @@ function el(tag, className, text) {
 
 const projectList = document.getElementById("project-list");
 
-for (const project of projects) {
+if (projectList) for (const project of projects) {
     const item = el("li", "ani");
     const link = el("a", "project");
     link.href = project.url;
@@ -135,7 +135,7 @@ for (const project of projects) {
 }
 
 // Spotlight glow follows the cursor (offsets match `.project::before` inset).
-projectList.addEventListener("pointermove", function (e) {
+if (projectList) projectList.addEventListener("pointermove", function (e) {
     const link = e.target.closest(".project");
     if (!link) return;
     const rect = link.getBoundingClientRect();
@@ -157,34 +157,98 @@ for (const el of document.querySelectorAll(".ani")) {
     revealObserver.observe(el);
 }
 
-/* ========== ACTIVE NAV SECTION ========== */
-const navLinks = document.querySelectorAll("nav a");
+/* ========== SECTION NAV ========== */
+// Desktop: left rail. Mobile: floating button that briefly "peeks" the
+// current section's name and expands into the full list when tapped.
+const sectionNav = document.querySelector(".section-nav");
+const navLinks = document.querySelectorAll(".section-nav a");
+const sections = document.querySelectorAll("main section[id]");
+const sectionToggle = sectionNav && sectionNav.querySelector(".section-toggle");
+let currentId = null;
+let peekTimer;
 
 function setActive(id) {
+    if (!sectionNav || id === currentId) return;
+    const first = currentId === null;
+    currentId = id;
     for (const link of navLinks) {
         const isActive = link.getAttribute("href") === "#" + id;
         link.classList.toggle("active", isActive);
-        if (isActive) link.setAttribute("aria-current", "true");
-        else link.removeAttribute("aria-current");
+        if (isActive) {
+            link.setAttribute("aria-current", "true");
+            sectionToggle.querySelector(".current-icon").innerHTML = link.querySelector("svg").outerHTML;
+            sectionToggle.querySelector(".current-label").textContent = link.textContent;
+        } else {
+            link.removeAttribute("aria-current");
+        }
     }
+    if (first || sectionNav.classList.contains("open")) return;
+    sectionNav.classList.add("peek");
+    clearTimeout(peekTimer);
+    peekTimer = setTimeout(function () { sectionNav.classList.remove("peek"); }, 1600);
 }
 
-const sectionObserver = new IntersectionObserver(function (entries) {
-    for (const entry of entries) {
-        if (entry.isIntersecting) setActive(entry.target.id);
-    }
-}, { rootMargin: "-40% 0px -55% 0px" });
-
-for (const section of document.querySelectorAll("main section[id]")) {
-    sectionObserver.observe(section);
+function setMenuOpen(open) {
+    sectionNav.classList.toggle("open", open);
+    sectionToggle.setAttribute("aria-expanded", open);
+    if (open) sectionNav.classList.remove("peek");
 }
 
-// The last section may never reach the middle band on tall screens.
-window.addEventListener("scroll", function () {
-    if (window.innerHeight + window.scrollY >= document.body.scrollHeight - 4) {
-        setActive("contact");
-    } else if (window.scrollY < 40) {
-        setActive("about");
-    }
-}, { passive: true });
-setActive("about");
+if (sectionNav && sections.length) {
+    const sectionObserver = new IntersectionObserver(function (entries) {
+        for (const entry of entries) {
+            if (entry.isIntersecting) setActive(entry.target.id);
+        }
+    }, { rootMargin: "-40% 0px -55% 0px" });
+
+    for (const section of sections) sectionObserver.observe(section);
+
+    // The first/last sections may never reach the middle band.
+    const firstId = sections[0].id;
+    const lastId = sections[sections.length - 1].id;
+    window.addEventListener("scroll", function () {
+        if (window.innerHeight + window.scrollY >= document.body.scrollHeight - 4) {
+            setActive(lastId);
+        } else if (window.scrollY < 40) {
+            setActive(firstId);
+        }
+    }, { passive: true });
+    setActive(firstId);
+
+    sectionToggle.addEventListener("click", function () {
+        setMenuOpen(!sectionNav.classList.contains("open"));
+    });
+    document.addEventListener("click", function (e) {
+        if (!sectionNav.contains(e.target)) setMenuOpen(false);
+    });
+    document.addEventListener("keydown", function (e) {
+        if (e.key === "Escape" && sectionNav.classList.contains("open")) {
+            setMenuOpen(false);
+            sectionToggle.focus();
+        }
+    });
+}
+
+/* ========== IN-PAGE LINKS (smooth scroll, URL stays unchanged) ========== */
+document.addEventListener("click", function (e) {
+    if (e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+    const link = e.target.closest('a[href^="#"]');
+    if (!link) return;
+    const target = document.getElementById(link.getAttribute("href").slice(1));
+    if (!target) return;
+    e.preventDefault();
+
+    const behavior = reducedMotion ? "auto" : "smooth";
+    if (target === sections[0]) window.scrollTo({ top: 0, behavior: behavior });
+    else target.scrollIntoView({ behavior: behavior, block: "start" });
+
+    // Move focus for keyboard / screen-reader users without jumping.
+    if (!target.hasAttribute("tabindex")) target.setAttribute("tabindex", "-1");
+    target.focus({ preventScroll: true });
+    if (sectionNav && sectionNav.contains(link)) setMenuOpen(false);
+});
+
+// Arriving with a hash (old links): let the browser jump, then tidy the URL.
+if (location.hash && document.getElementById(location.hash.slice(1))) {
+    history.replaceState(null, "", location.pathname + location.search);
+}

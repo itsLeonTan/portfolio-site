@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reading · it's Leon Tan</title>
+    <meta name="description" content="A curated shelf of the books that have shaped Leon Tan's thinking.">
+    <link rel="icon" type="image/x-icon" href="../src/rubik.png">
+
+    <!-- Apply saved / system theme before first paint to avoid a flash -->
+    <script>
+        (function () {
+            var root = document.documentElement;
+            var theme;
+            try { theme = localStorage.getItem("theme"); } catch (e) {}
+            if (theme !== "light" && theme !== "dark") {
+                theme = window.matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark";
+            }
+            root.classList.remove("light", "dark");
+            root.classList.add(theme, "js");
+        })();
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap">
+    <link rel="stylesheet" href="../css/index.css">
+    <script src="../js/index.js" defer></script>
+    <script src="../js/reading.js" defer></script>
+</head>
+
+<body>
+    <div class="rails" aria-hidden="true"></div>
+
+    <!-- ========== HEADER ========== -->
+    <header>
+        <div class="header-blur" aria-hidden="true">
+            <span></span><span></span><span></span>
+        </div>
+
+        <div class="container header-inner">
+            <a id="avatar" class="glass" href="../" aria-label="Leon Tan — home">
+                <img src="../src/headshot.jpg" alt="Leon Tan" width="48" height="48">
+            </a>
+
+            <nav class="glass site-nav" aria-label="Main">
+                <a href="../">Home</a>
+                <a href="./" class="active" aria-current="page">Reading</a>
+            </nav>
+
+            <button id="theme-toggle" class="glass" type="button" aria-label="Switch theme">
+                <svg class="icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+                <svg class="icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+            </button>
+        </div>
+    </header>
+
+    <!-- ========== MAIN ========== -->
+    <main class="container">
+
+        <!-- INTRO -->
+        <section id="reading" class="ani">
+            <p class="eyebrow">Reading &middot; Favourites</p>
+            <h1 class="typewrite" data-type='["Books that shaped me.", "Lives I borrowed.", "Doors I walked through."]' data-period="2200"><span class="wrap"></span></h1>
+
+            <p>
+                Books that changed how I see the world. 
+            </p>
+            <p id="last-updated" class="updated" hidden></p>
+        </section>
+
+        <!-- SHELF (rendered by js/reading.js from src/goodreads_library_export.csv) -->
+        <section id="favourites">
+            <h2 class="ani">Favourites</h2>
+            <ul id="book-grid" class="books"></ul>
+            <p id="books-status" class="books-status" role="status">Loading the shelf…</p>
+            <noscript><p class="books-status">The shelf needs JavaScript to load. You can still browse everything on Goodreads below.</p></noscript>
+        </section>
+
+        <!-- GOODREADS -->
+        <section id="goodreads" class="ani">
+            <p class="goodreads-link">
+                <a href="https://www.goodreads.com/user/show/123224728-leon-the-amateur" target="_blank" rel="noopener noreferrer">Find me on Goodreads ↗</a>
+            </p>
+        </section>
+    </main>
+
+    <!-- ========== FOOTER ========== -->
+    <footer class="container">
+        <div>&#169; 2026 Leon Tan. All rights reserved.</div>
+    </footer>
+</body>
+
+</html>
