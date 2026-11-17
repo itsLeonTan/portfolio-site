@@ -1,11 +1,6 @@
 #!/usr/bin/env python3
-"""Download Open Library covers for every favourite in the Goodreads export.
+#Download Open Library covers for every favourite in the Goodreads export.
 
-Usage (from the repo root):  python3 scripts/fetch_covers.py
-Covers are saved as src/covers/<ISBN>.jpg (ISBN13, else ISBN10), matching what
-js/reading.js looks for first. Existing files are skipped; missing covers are
-reported and the page falls back to Open Library / a placeholder.
-"""
 import csv
 import pathlib
 import re
