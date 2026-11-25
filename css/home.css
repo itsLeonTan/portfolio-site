@@ -1,0 +1,407 @@
+/* ==========================================================================
+   HOME PAGE (index.html)
+   Loaded after main.css. Shared tokens, header, nav-link base styles,
+   typography and footer live there.
+   ========================================================================== */
+
+/* ==========================================================================
+   SECTION NAV
+   Same icons and active line/glow as the old header nav, turned vertical.
+   Desktop: floating rail left of the column. Mobile: see RESPONSIVE.
+   ========================================================================== */
+.section-nav {
+    position: fixed;
+    z-index: 90;
+    top: 50%;
+    right: calc(50% + var(--column) / 2 + 2rem + 20px);
+    transform: translateY(-50%);
+}
+.section-nav ul {
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    padding: 8px 0;
+    list-style: none;
+}
+.section-nav a { padding: 10px 13px; }
+.section-toggle { display: none; }
+
+/* Vertical active indicator on the left edge */
+.section-nav a::after,
+.section-nav a::before {
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%) scaleY(.4);
+}
+.section-nav a::after {
+    width: 1px;
+    height: 60%;
+    background: linear-gradient(to bottom, transparent, var(--accent-c), transparent);
+}
+.section-nav a::before {
+    left: -16px;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: rgb(var(--accent) / .35);
+    filter: blur(12px);
+    transform: translateY(-50%) scale(.4);
+}
+.section-nav a.active::after { opacity: 1; transform: translateY(-50%) scaleY(1); }
+.section-nav a.active::before { opacity: 1; transform: translateY(-50%) scale(1); }
+
+/* Hover label (desktop) */
+.section-label {
+    position: absolute;
+    left: calc(100% + 10px);
+    top: 50%;
+    padding: 4px 10px;
+    border-radius: 999px;
+    font: 500 .65rem/1.4 var(--font-mono);
+    white-space: nowrap;
+    color: var(--heading);
+    background: var(--bg-bottom);
+    box-shadow: inset 0 0 0 1px var(--border), 0 4px 12px var(--shadow);
+    opacity: 0;
+    pointer-events: none;
+    transform: translate(-6px, -50%);
+    transition: opacity .2s ease, transform .3s var(--ease-out-expo);
+}
+.section-nav a:hover .section-label,
+.section-nav a:focus-visible .section-label {
+    opacity: 1;
+    transform: translate(0, -50%);
+}
+
+/* Floating toggle (mobile) */
+.section-toggle {
+    align-items: center;
+    padding: 11px;
+    border: none;
+    font: 500 .7rem/20px var(--font-mono);
+    color: var(--heading);
+    cursor: pointer;
+    transition: transform .15s ease;
+}
+.section-toggle:active { transform: scale(.94); }
+.section-toggle .current-icon { display: flex; }
+.section-toggle .current-label {
+    max-width: 0;
+    overflow: hidden;
+    white-space: nowrap;
+    opacity: 0;
+    transition: max-width .45s var(--ease-out-expo), margin .45s var(--ease-out-expo), opacity .25s ease;
+}
+.section-nav.peek .current-label {
+    max-width: 120px;
+    margin: 0 4px 0 8px;
+    opacity: 1;
+}
+.section-nav.peek .current-icon { color: var(--accent-c); }
+.section-toggle .current-icon { transition: color .3s ease; }
+
+
+/* ---------- Intro actions ---------- */
+.actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 24px;
+}
+.btn {
+    display: inline-flex;
+    align-items: center;
+    padding: 7px 14px;
+    border-radius: 999px;
+    font-size: .75rem;
+    font-weight: 500;
+    line-height: 1;
+    text-decoration: none;
+    color: var(--heading);
+    background: rgb(var(--base) / .06);
+    box-shadow: inset 0 0 0 1px var(--border);
+    transition: background-color .2s ease, transform .15s ease;
+}
+.btn:hover { background: rgb(var(--base) / .12); }
+.btn:active { transform: scale(.95); }
+.btn-primary {
+    color: rgb(var(--on-accent));
+    background: var(--accent-c);
+    box-shadow: none;
+}
+.btn-primary:hover {
+    color: rgb(var(--on-accent));
+    background: rgb(var(--accent) / .85);
+}
+
+
+/* ---------- Two-column entries (experience, education, skills) ---------- */
+.entries {
+    display: grid;
+    grid-template-columns: 22% 1fr;
+    column-gap: 4%;
+    row-gap: 22px;
+    margin: 0;
+}
+.entries dt {
+    font-family: var(--font-mono);
+    font-size: .7rem;
+    color: var(--muted);
+    padding-top: 2px;
+}
+.entries dd { margin: 0; }
+.entries strong {
+    display: block;
+    color: var(--heading);
+    font-weight: 500;
+}
+.entries .at { color: var(--muted); font-weight: 400; }
+.entries small {
+    display: block;
+    font-size: .75rem;
+    color: var(--muted);
+}
+.entries dd p { margin: 6px 0 0; }
+
+/* Skill tags */
+.tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+.tags span {
+    padding: 3px 10px;
+    border-radius: 999px;
+    font-size: .75rem;
+    color: var(--text);
+    background: rgb(var(--base) / .04);
+    box-shadow: inset 0 0 0 1px var(--border);
+    transition: background-color .25s ease, color .25s ease, box-shadow .25s ease;
+}
+.tags span:hover {
+    color: var(--accent-c);
+    background: rgb(var(--accent) / .12);
+    box-shadow: inset 0 0 0 1px rgb(var(--accent) / .35);
+}
+
+/* ---------- Collapsible "Earlier work" ---------- */
+.collapse {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows .7s ease-in-out;
+}
+.collapse > div {
+    min-height: 0;
+    overflow: hidden;
+}
+.collapse .entries { padding-top: 22px; }
+.collapse.open { grid-template-rows: 1fr; }
+
+.collapse dt,
+.collapse dd {
+    opacity: 0;
+    transform: translateY(-6px);
+    transition: opacity .5s ease-out, transform .5s ease-out;
+}
+.collapse.open dt,
+.collapse.open dd {
+    opacity: 1;
+    transform: none;
+}
+.collapse.open :is(dt, dd):nth-of-type(1) { transition-delay: .1s; }
+.collapse.open :is(dt, dd):nth-of-type(2) { transition-delay: .25s; }
+.collapse.open :is(dt, dd):nth-of-type(3) { transition-delay: .4s; }
+
+.divider-toggle {
+    display: flex;
+    align-items: center;
+    margin-top: 16px;
+}
+.divider-toggle > span {
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--border));
+}
+.divider-toggle > span:last-child {
+    background: linear-gradient(to left, transparent, var(--border));
+}
+.divider-toggle button {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 10px 6px 12px;
+    border: none;
+    border-radius: 999px;
+    background: transparent;
+    font: 500 .75rem/1 var(--font-sans);
+    color: rgb(var(--base) / .85);
+    cursor: pointer;
+    transition: background-color .15s ease, color .15s ease, transform .15s ease;
+}
+.divider-toggle button:hover {
+    color: var(--heading);
+    background: rgb(var(--base) / .08);
+}
+.divider-toggle button:active { transform: scale(.95); }
+.divider-toggle .arrow {
+    display: inline-block;
+    transition: transform .4s var(--ease-out-expo);
+}
+.divider-toggle button[aria-expanded="true"] .arrow { transform: rotate(180deg); }
+
+/* ---------- Projects ---------- */
+.projects {
+    /* Pull the first row up so its title sits the same distance below the
+       heading as the first entry in other sections. */
+    margin: -14px 0 0;
+    padding: 0;
+    list-style: none;
+}
+.projects li + li { border-top: 1px solid var(--border); }
+
+.project {
+    --x: 50%;
+    --y: 50%;
+    position: relative;
+    display: grid;
+    gap: 2px;
+    padding: 14px 0;
+    color: var(--text);
+    text-decoration: none;
+    isolation: isolate;
+}
+/* Hover card: green-tinted wash, a cursor-following spotlight (--x/--y set
+   in index.js), a thin accent outline and a soft outer glow. */
+.project::before {
+    content: "";
+    position: absolute;
+    inset: 2px -14px;
+    z-index: -1;
+    border-radius: 12px;
+    background:
+        radial-gradient(220px circle at var(--x) var(--y), rgb(var(--accent) / .16), transparent 70%),
+        rgb(var(--accent) / .04);
+    box-shadow:
+        inset 0 0 0 1px rgb(var(--accent) / .22),
+        0 0 28px -6px rgb(var(--accent) / .35);
+    opacity: 0;
+    transform: scale(.985);
+    transition: opacity .3s ease, transform .4s var(--ease-out-expo);
+}
+.project:hover,
+.project:focus-visible { color: var(--text); outline: none; }
+.project:hover::before,
+.project:focus-visible::before {
+    opacity: 1;
+    transform: none;
+}
+.project:active::before { transform: scale(.99); }
+.project .project-name { transition: color .25s ease, text-shadow .25s ease; }
+.project:hover .project-name,
+.project:focus-visible .project-name {
+    color: var(--accent-c);
+    text-shadow: 0 0 18px rgb(var(--accent) / .45);
+}
+
+.project-head {
+    display: flex;
+    align-items: baseline;
+    gap: 6px;
+}
+.project-name {
+    color: var(--heading);
+    font-size: .95rem;
+    font-weight: 500;
+    letter-spacing: -.01em;
+}
+.project-arrow {
+    color: var(--muted);
+    font-size: .8rem;
+    transition: color .2s ease, transform .3s var(--ease-out-expo);
+}
+.project:hover .project-arrow,
+.project:focus-visible .project-arrow {
+    color: var(--accent-c);
+    transform: translate(2px, -2px);
+}
+
+.project-meta {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 6px;
+    font-family: var(--font-mono);
+    font-size: .65rem;
+    color: var(--muted);
+}
+.project-tag::before {
+    content: "·";
+    margin: 0 7px;
+}
+
+/* ---------- Contact ---------- */
+.inline-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 22px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+
+/* ==========================================================================
+   RESPONSIVE
+   ========================================================================== */
+/* Section nav collapses to a floating button when the side gutter is too narrow */
+@media (max-width: 860px) {
+    .section-nav {
+        top: auto;
+        right: 16px;
+        bottom: max(16px, env(safe-area-inset-bottom));
+        transform: none;
+        display: flex;
+        flex-direction: column-reverse;
+        align-items: flex-end;
+        gap: 8px;
+    }
+    .section-toggle { display: flex; }
+    .section-nav ul {
+        padding: 6px 0;
+        border-radius: 20px;
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(8px) scale(.96);
+        transform-origin: bottom right;
+        transition: opacity .2s ease, transform .35s var(--ease-out-expo), visibility 0s .35s;
+    }
+    .section-nav.open ul {
+        opacity: 1;
+        visibility: visible;
+        transform: none;
+        transition-delay: 0s;
+    }
+    .section-nav a {
+        justify-content: flex-start;
+        gap: 10px;
+        padding: 9px 18px 9px 14px;
+    }
+    .section-label {
+        position: static;
+        padding: 0;
+        font-size: .7rem;
+        background: none;
+        box-shadow: none;
+        opacity: 1;
+        transform: none;
+    }
+    .section-nav a::before { left: -14px; }
+}
+
+@media (max-width: 544px) {
+    .entries {
+        grid-template-columns: 1fr;
+        row-gap: 4px;
+    }
+    .entries dd { margin-bottom: 16px; }
+    .collapse .entries { padding-top: 16px; }
+}

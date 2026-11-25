@@ -1,0 +1,417 @@
+/* ==========================================================================
+   THEME TOKENS
+   All text/border colours derive from one base colour (--base, as RGB
+   channels) at different opacities. Light/dark only swap the raw values.
+   ========================================================================== */
+:root {
+    --column: 544px;
+    --gutter: 20px;
+    --header-height: 88px;
+
+    --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+    --font-mono: "IBM Plex Mono", ui-monospace, Menlo, Consolas, monospace;
+
+    --ease-out-expo: cubic-bezier(.19, 1, .22, 1);
+}
+
+html.dark {
+    --base: 255 255 255;
+    --accent: 51 204 148;           /* brightened brand green for dark bg */
+    --on-accent: 4 20 14;
+    --bg-top: #050505;
+    --bg-bottom: #111111;
+    --glass-bg: rgb(255 255 255 / .06);
+    --shadow: rgb(0 0 0 / .35);
+    color-scheme: dark;
+}
+
+html.light {
+    --base: 51 60 74;               /* slate */
+    --accent: 14 149 100;           /* original brand green hsl(158 83% 32%) */
+    --on-accent: 255 255 255;
+    --bg-top: #ececec;
+    --bg-bottom: #f6f6f6;
+    --glass-bg: rgb(255 255 255 / .7);
+    --shadow: rgb(51 60 74 / .08);
+    color-scheme: light;
+}
+
+:root {
+    --heading: rgb(var(--base));
+    --text: rgb(var(--base) / .65);
+    --muted: rgb(var(--base) / .45);
+    --border: rgb(var(--base) / .1);
+    --rail: rgb(var(--base) / .06);
+    --accent-c: rgb(var(--accent));
+}
+
+/* ==========================================================================
+   BASE
+   ========================================================================== */
+*, *::before, *::after { box-sizing: border-box; }
+
+html {
+    font-size: 18px;
+    scroll-behavior: smooth;
+    scroll-padding-top: var(--header-height);
+    background-color: var(--bg-bottom);
+    scrollbar-color: rgb(var(--accent) / .6) transparent;
+    scrollbar-width: thin;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    min-height: 100dvh;
+    display: flex;
+    flex-direction: column;
+    isolation: isolate;
+    font-family: var(--font-sans);
+    font-size: .85rem;
+    line-height: 1.6;
+    color: var(--text);
+    -webkit-font-smoothing: antialiased;
+    font-feature-settings: "kern", "liga", "cv11";
+    transition: color .3s ease;
+}
+
+/* Fixed vertical background gradient */
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -2;
+    pointer-events: none;
+    background: linear-gradient(to bottom, var(--bg-top) 0%, var(--bg-bottom) 70%);
+}
+
+::selection { background: rgb(var(--accent) / .3); color: var(--heading); }
+
+a {
+    color: rgb(var(--base) / .85);
+    text-decoration: underline;
+    text-decoration-color: var(--border);
+    text-decoration-thickness: 1px;
+    text-underline-offset: 3px;
+    transition: color .2s ease, text-decoration-color .2s ease;
+}
+a:hover {
+    color: var(--heading);
+    text-decoration-color: var(--accent-c);
+}
+
+:focus-visible {
+    outline: 2px solid var(--accent-c);
+    outline-offset: 2px;
+    border-radius: 6px;
+}
+
+.container {
+    width: 100%;
+    max-width: calc(var(--column) + 2 * var(--gutter));
+    margin-inline: auto;
+    padding-inline: var(--gutter);
+}
+
+/* Faint vertical rails framing the column */
+.rails {
+    position: fixed;
+    inset-block: 0;
+    left: 50%;
+    z-index: -1;
+    width: calc(var(--column) + 8vw);
+    max-width: calc(var(--column) + 4rem);
+    transform: translateX(-50%);
+    pointer-events: none;
+    border-inline: 1px solid var(--rail);
+    background: rgb(var(--base) / .012);
+    -webkit-mask-image: linear-gradient(#000 70%, transparent 100%);
+            mask-image: linear-gradient(#000 70%, transparent 100%);
+}
+
+/* Scroll reveal (only hides content when JS is running) */
+.js .ani {
+    opacity: 0;
+    transform: translateY(8px);
+    transition: opacity .6s ease, transform .6s var(--ease-out-expo);
+}
+.js .ani.show {
+    opacity: 1;
+    transform: none;
+}
+
+/* ==========================================================================
+   GLASS PILLS
+   ========================================================================== */
+.glass {
+    background: var(--glass-bg);
+    -webkit-backdrop-filter: blur(24px);
+            backdrop-filter: blur(24px);
+    border-radius: 999px;
+    box-shadow:
+        inset 0 0 0 1px var(--border),
+        0 2px 4px var(--shadow),
+        0 8px 16px var(--shadow);
+}
+
+/* ==========================================================================
+   HEADER
+   ========================================================================== */
+header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    padding: 20px 0;
+}
+
+/* Progressive blur: stacked layers, stronger toward the top */
+.header-blur {
+    position: absolute;
+    inset: 0 0 -20px 0;
+    pointer-events: none;
+}
+.header-blur::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, var(--bg-top) 0%, transparent 100%);
+    opacity: .6;
+}
+.header-blur span {
+    position: absolute;
+    inset: 0;
+}
+.header-blur span:nth-child(1) {
+    -webkit-backdrop-filter: blur(1px); backdrop-filter: blur(1px);
+    -webkit-mask-image: linear-gradient(to bottom, #000 40%, transparent 100%);
+            mask-image: linear-gradient(to bottom, #000 40%, transparent 100%);
+}
+.header-blur span:nth-child(2) {
+    -webkit-backdrop-filter: blur(3px); backdrop-filter: blur(3px);
+    -webkit-mask-image: linear-gradient(to bottom, #000 25%, transparent 75%);
+            mask-image: linear-gradient(to bottom, #000 25%, transparent 75%);
+}
+.header-blur span:nth-child(3) {
+    -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px);
+    -webkit-mask-image: linear-gradient(to bottom, #000 10%, transparent 50%);
+            mask-image: linear-gradient(to bottom, #000 10%, transparent 50%);
+}
+
+.header-inner {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 6px;
+}
+
+#avatar {
+    display: block;
+    padding: 2px;
+    line-height: 0;
+    transition: transform .2s ease;
+}
+#avatar img {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+#avatar:hover { transform: scale(1.05); }
+#avatar:active { transform: scale(.95); }
+
+/* Main nav pill (Home / Reading) */
+.site-nav {
+    display: flex;
+    padding: 0 8px;
+}
+.site-nav a,
+.section-nav a {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 13px 10px;
+    color: var(--heading);
+    text-decoration: none;
+    opacity: .5;
+    transition: opacity .2s ease;
+}
+.site-nav a {
+    padding-inline: 14px;
+    font-size: .75rem;
+    font-weight: 500;
+    line-height: 22px;
+}
+:is(.site-nav, .section-nav) a:hover,
+:is(.site-nav, .section-nav) a:focus-visible,
+:is(.site-nav, .section-nav) a.active { opacity: 1; }
+
+/* Active indicator: thin fading line + soft glow */
+:is(.site-nav, .section-nav) a::after,
+:is(.site-nav, .section-nav) a::before {
+    content: "";
+    position: absolute;
+    left: 50%;
+    pointer-events: none;
+    opacity: 0;
+    transform: translateX(-50%) scaleX(.4);
+    transition: opacity .3s ease, transform .4s var(--ease-out-expo);
+}
+.site-nav a::after {
+    bottom: 0;
+    width: 70%;
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--accent-c), transparent);
+}
+.site-nav a::before {
+    bottom: -14px;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: rgb(var(--accent) / .35);
+    filter: blur(12px);
+}
+.site-nav a.active::after,
+.site-nav a.active::before {
+    opacity: 1;
+    transform: translateX(-50%) scaleX(1);
+}
+
+
+svg {
+    width: 22px;
+    height: 22px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+#theme-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 13px;
+    border: none;
+    color: var(--heading);
+    cursor: pointer;
+    opacity: .7;
+    transition: opacity .2s ease, transform .15s ease;
+}
+#theme-toggle:hover { opacity: 1; }
+#theme-toggle:active { transform: scale(.92); }
+#theme-toggle svg { transition: transform .5s var(--ease-out-expo); }
+#theme-toggle:hover svg { transform: rotate(20deg); }
+html.dark .icon-moon,
+html.light .icon-sun { display: none; }
+
+
+/* ==========================================================================
+   MAIN CONTENT
+   ========================================================================== */
+main {
+    flex: 1;
+    padding-top: 40px;
+}
+
+section { margin-top: 64px; }
+section:first-child { margin-top: 0; }
+
+h1, h2 {
+    color: var(--heading);
+    font-weight: 500;
+    margin: 0;
+}
+h2 {
+    font-size: 1.25rem;
+    margin-bottom: 20px;
+}
+p { margin: 0 0 1em; }
+
+/* ---------- About / intro ---------- */
+.eyebrow {
+    font-family: var(--font-mono);
+    font-size: .7rem;
+    letter-spacing: .02em;
+    color: var(--muted);
+    margin-bottom: 12px;
+}
+
+.typewrite {
+    font-size: clamp(1.6rem, 7vw, 2.4rem);
+    line-height: 1.2;
+    letter-spacing: -.03em;
+    min-height: 1.2em;
+    margin-bottom: 24px;
+}
+.typewrite > .wrap {
+    padding-right: 3px;
+    border-right: 2px solid var(--accent-c);
+    animation: blink 1s steps(1) infinite;
+}
+@keyframes blink {
+    50% { border-right-color: transparent; }
+}
+
+/* Smooth cross-page transition (Home <-> Reading); the header stays put */
+@view-transition { navigation: auto; }
+header { view-transition-name: site-header; }
+
+/* ==========================================================================
+   FOOTER
+   ========================================================================== */
+footer {
+    display: flex;
+    justify-content: space-between;
+    gap: 4px 16px;
+    margin-top: 48px;
+    padding-block: 28px;
+    font-size: .65rem;
+    color: var(--muted);
+}
+
+
+/* ==========================================================================
+   RESPONSIVE
+   ========================================================================== */
+@media (max-width: 600px) {
+    html { font-size: 17px; }
+    .rails { display: none; }
+}
+
+@media (max-width: 544px) {
+    :root { --gutter: 16px; --header-height: 76px; }
+
+    header { padding: 14px 0; }
+    #avatar img { width: 40px; height: 40px; }
+    .site-nav { padding: 0 4px; }
+    .site-nav a { padding: 11px 12px; }
+    #theme-toggle { padding: 11px; }
+    svg { width: 20px; height: 20px; }
+
+    main { padding-top: 24px; }
+    section { margin-top: 52px; }
+
+    footer {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+}
+
+@media (max-width: 380px) {
+    .site-nav a { padding-inline: 9px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    @view-transition { navigation: none; }
+    html { scroll-behavior: auto; }
+    *, *::before, *::after {
+        transition-duration: 0s !important;
+        transition-delay: 0s !important;
+        animation: none !important;
+    }
+    .js .ani { opacity: 1; transform: none; }
+}

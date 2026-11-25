@@ -1,0 +1,175 @@
+/* ==========================================================================
+   READING PAGE (reading/index.html)
+   Loaded after main.css.
+   ========================================================================== */
+
+.updated {
+    margin-top: 20px;
+    font-family: var(--font-mono);
+    font-size: .65rem;
+    color: var(--muted);
+}
+
+.books {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px 16px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.book {
+    position: relative;
+    display: block;
+    width: 100%;
+    padding: 0;
+    border: none;
+    border-radius: 8px;
+    background: none;
+    font: inherit;
+    text-align: left;
+    color: inherit;
+    cursor: pointer;
+    transition: transform .5s var(--ease-out-expo);
+    -webkit-tap-highlight-color: transparent;
+}
+
+.book-cover {
+    position: relative;
+    display: block;
+    aspect-ratio: 2 / 3;
+    overflow: hidden;
+    border-radius: 8px;
+    background: rgb(var(--base) / .05);
+    box-shadow:
+        inset 0 0 0 1px var(--border),
+        0 2px 4px var(--shadow),
+        0 8px 16px var(--shadow);
+    transition: box-shadow .4s ease;
+}
+.book-cover img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;           /* crops to fit, never stretches */
+    opacity: 0;
+    transition: opacity .5s ease, transform .6s var(--ease-out-expo);
+}
+.book-cover.loaded img { opacity: 1; }
+.book-cover.loaded .book-fallback { visibility: hidden; }
+
+/* Shown until a cover loads, and kept when none exists */
+.book-fallback {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    gap: 4px;
+    padding: 14px;
+    background: linear-gradient(160deg, rgb(var(--accent) / .14), rgb(var(--base) / .03) 60%);
+}
+.book-fallback-title {
+    color: var(--heading);
+    font-size: .8rem;
+    font-weight: 500;
+    line-height: 1.3;
+}
+.book-fallback-author {
+    font-size: .65rem;
+    color: var(--muted);
+}
+
+/* Overlay: fades and slides up over the bottom of the cover */
+.book-info {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    gap: 2px;
+    padding: 14px 12px;
+    border-radius: 8px;
+    background: linear-gradient(to top, rgb(0 0 0 / .88) 0%, rgb(0 0 0 / .6) 45%, rgb(0 0 0 / .1) 100%);
+    color: rgb(255 255 255 / .75);
+    opacity: 0;
+    transition: opacity .35s ease;
+}
+.book-info > * {
+    transform: translateY(8px);
+    transition: transform .5s var(--ease-out-expo);
+}
+.book-title {
+    color: #fff;
+    font-size: .8rem;
+    font-weight: 500;
+    line-height: 1.3;
+    letter-spacing: -.01em;
+}
+.book-author { font-size: .7rem; }
+.book-date {
+    margin-top: 6px;
+    font-family: var(--font-mono);
+    font-size: .6rem;
+    color: rgb(var(--accent));
+}
+
+.book[aria-expanded="true"],
+.book:focus-visible { transform: translateY(-4px); }
+.book[aria-expanded="true"] .book-cover,
+.book:focus-visible .book-cover {
+    box-shadow:
+        inset 0 0 0 1px rgb(var(--accent) / .35),
+        0 10px 24px var(--shadow),
+        0 0 28px -6px rgb(var(--accent) / .35);
+}
+.book[aria-expanded="true"] img,
+.book:focus-visible img { transform: scale(1.04); }
+.book[aria-expanded="true"] .book-info,
+.book:focus-visible .book-info { opacity: 1; }
+.book[aria-expanded="true"] .book-info > *,
+.book:focus-visible .book-info > * { transform: none; }
+.book:focus-visible { outline-offset: 4px; border-radius: 8px; }
+
+/* Hover reveal only on real pointers; touch uses tap (aria-expanded) */
+@media (hover: hover) and (pointer: fine) {
+    .book:hover { transform: translateY(-4px); }
+    .book:hover .book-cover {
+        box-shadow:
+            inset 0 0 0 1px rgb(var(--accent) / .35),
+            0 10px 24px var(--shadow),
+            0 0 28px -6px rgb(var(--accent) / .35);
+    }
+    .book:hover img { transform: scale(1.04); }
+    .book:hover .book-info { opacity: 1; }
+    .book:hover .book-info > * { transform: none; }
+}
+
+.books-status {
+    font-size: .75rem;
+    color: var(--muted);
+}
+
+.goodreads-link {
+    font-size: .75rem;
+    color: var(--muted);
+}
+
+
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+}
+
+/* ==========================================================================
+   RESPONSIVE
+   ========================================================================== */
+@media (max-width: 544px) {
+    .books { grid-template-columns: repeat(2, 1fr); gap: 16px 12px; }
+}
