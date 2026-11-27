@@ -1,0 +1,25 @@
+{
+  "categories": [
+    {
+      "name": "Personal",
+      "count": 1
+    }
+  ],
+  "articles": [
+    {
+      "title": "What's Left to Write",
+      "slug": "whats-left-to-write",
+      "url": "whats-left-to-write/",
+      "date": "2026-11-26",
+      "last_modified": null,
+      "category": "Personal",
+      "description": "Why I still read, and why I'm starting to write, in the age of AI.",
+      "reading_time": 4,
+      "tags": [
+        "Writing",
+        "Reading"
+      ],
+      "source": "writing/articles/whats-left-to-write.md"
+    }
+  ]
+}
