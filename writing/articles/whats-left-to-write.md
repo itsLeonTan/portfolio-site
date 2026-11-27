@@ -4,7 +4,7 @@ title: "What's Left to Write"
 slug: "whats-left-to-write"
 
 date: "2026-11-26"
-last_modified: "2026-11-26"
+last_modified: "2026-11-27"
 
 description: "Why I still read, and why I'm starting to write, in the age of AI."
 
@@ -35,11 +35,11 @@ To put it plainly, often we read not because of what was written, but how it was
 
 We also read to connect with other people in one way or another. It could be a blog that you follow and you deeply value not just the people they spend time with, the places they have been, and the things they own, but their perspective and how they view the world, the people, and things around them. Their perspective influences what we pay attention to in our lives as well. We truly see what we look for. 
 
-AI is undeniably gaining dominance in areas that were traditionally the domain of human writers, but I do believe that there are some areas where AI will never be able to replace human completely. Spaces where genuine personal experiences are deeply valued and will always require a human touch.
+AI is undeniably gaining dominance in fields that were traditionally the domain of human writers, but I believe there are some areas where AI cannot replace humans completely. AI will always be able to assist, but spaces where genuine personal experiences are valued above all will require a human touch. For me, those are reviews I weigh, memoirs I read, and letters I receive. AI may be able to mimic a human very well, but authenticity is hard to replicate. Reading, like writing, is one of the ways we connect with another person, and that connection only means something when a real person is on the other end.
 
 Personally I have always liked the idea of starting a blog, but found a reason not to every time. Especially in today's rapidly changing landscape, it is harder to find a place online for our writing. It is not easy to hit a moving target. So this blog in a lot of ways is a personal exploration to find reasons for myself to begin and write. I will miss 100% of the shots I don't take.
 
 Even if no one is reading, there is still a compelling reason to write. It is perhaps the same reason why people journal. Writing helps us figure out what we are thinking. Helps us organise and formulize our thoughts and ideas better. To lay them out in front of us in scattered pieces so we can better bring them together to create a whole.
 
-Not every written piece will be from a human, and it will always be that way, but written pieces are ultimately for people. Only we can truly know what we like.
+Not every written piece will be from a human, and it will always be that way, but written pieces are ultimately for people. Only you can truly know what you like, and no one else can write it for you. So don't just write what you think others might want to read. Write first what you'd want to read yourself. That is what's left to write.
 
